@@ -1,0 +1,144 @@
+.review-container {
+  max-width: 800px;
+  margin: auto;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  background: #fff;
+}
+
+.feedback-section {
+  padding: 50px 0;
+}
+
+.feedback-image {
+  width: 100%;
+  height: 60vh;
+  max-width: 400px;
+  border-radius: 10px;
+}
+
+.form-container {
+  background: #f8f9fa; /* Light gray background */
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+h2 {
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.form-group {
+  margin-bottom: 15px;
+  text-align: left;
+}
+
+label {
+  font-weight: bold;
+}
+
+input, textarea {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+textarea {
+  height: 80px;
+}
+
+button {
+  background: #28a745;
+  color: white;
+  border: none;
+  padding: 10px;
+  width: 100%;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+button:disabled {
+  background: #ccc;
+}
+
+.rating span {
+  font-size: 24px;
+  cursor: pointer;
+  color: #ccc;
+}
+
+.rating span.filled {
+  color: #ffcc00;
+}
+
+.reviews-list {
+  margin-top: 20px;
+  text-align: left;
+}
+
+.reviews-list h3 {
+  border-bottom: 2px solid #ddd;
+  padding-bottom: 5px;
+}
+
+.reviews-list p {
+  margin: 5px 0;
+}
+
+
+/* Styling for submitted reviews */
+.reviews-container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.review-row {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.review-card {
+  background: white;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  width: calc(33.33% - 20px);
+  min-width: 250px;
+  max-width: 300px;
+  text-align: center;
+}
+
+.review-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.avatar {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+}
+
+.timestamp {
+  font-size: 12px;
+  color: gray;
+}
+
+.rating {
+  margin-top: 10px;
+}
+
+.review-text {
+  margin-top: 10px;
+  font-style: italic;
+}
