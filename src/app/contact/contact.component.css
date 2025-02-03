@@ -1,0 +1,11 @@
+.text-primary svg {
+  color: #ffffff !important; /* Change icon color */
+  background: rgb(81, 75, 75); /* Light background for icons */
+  padding: 10px;
+  border-radius: 50%;
+}
+
+.text-primary {
+  color: #000000 !important; /* Ensure text color matches the theme */
+}
+
