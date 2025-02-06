@@ -1,0 +1,76 @@
+<!-- Custom Product Request Page -->
+<section class="py-5 bg-light">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-lg-10 text-center">
+        <h2 class="mb-4 text">Personalize Every Detail & Bring Your Vision to Life!</h2><hr>
+        <p class="lead text-muted">Looking for something unique? Whether it's a specific size, color,
+          or a custom design, we’re here to turn your ideas into reality. Simply fill out the form below,
+          and let’s create something amazing together!</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="py-5">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-6 mb-4">
+        <img src="/assets/review2.png" class="img-fluid rounded shadow" alt="Custom Product">
+      </div>
+      <div class="col-lg-6">
+        <div class="p-4 border rounded shadow bg-white">
+          <h4 class="text-dark mb-3">Custom Product Request Form</h4>
+
+          <form [formGroup]="customProductForm" (ngSubmit)="onSubmit()">
+            <div class="mb-3">
+              <label for="name" class="form-label">Name:</label>
+              <input type="text" id="name" class="form-control" formControlName="name" placeholder="Your Name" required>
+              <div class="text-danger small" *ngIf="customProductForm.get('name')?.invalid && customProductForm.get('name')?.touched">
+                Name is required.
+              </div>
+            </div>
+
+            <div class="mb-3">
+              <label for="email" class="form-label">Email:</label>
+              <input type="email" id="email" class="form-control" formControlName="email" placeholder="Your Email" required>
+              <div class="text-danger small" *ngIf="customProductForm.get('email')?.invalid && customProductForm.get('email')?.touched">
+                Enter a valid email.
+              </div>
+            </div>
+
+            <div class="mb-3">
+              <label for="product_type" class="form-label">Product Type:</label>
+              <select id="product_type" class="form-select" formControlName="product_type" required>
+                <option value="" disabled>Select a product</option>
+                <option *ngFor="let type of productTypes" [value]="type">{{ type }}</option>
+              </select>
+            </div>
+
+            <div class="mb-3">
+              <label for="size" class="form-label">Size:</label>
+              <input type="text" id="size" class="form-control" formControlName="size" placeholder="E.g., M, L, XL">
+            </div>
+
+            <div class="mb-3">
+              <label for="color" class="form-label">Preferred Color:</label>
+              <input type="text" id="color" class="form-control" formControlName="color" placeholder="Enter color">
+            </div>
+
+            <div class="mb-3">
+              <label for="image_url" class="form-label">Reference Image (Optional):</label>
+              <input type="file" id="image_url" class="form-control" (change)="onFileChange($event)">
+            </div>
+
+            <div class="mb-3">
+              <label for="notes" class="form-label">Additional Notes:</label>
+              <textarea id="notes" class="form-control" formControlName="notes" rows="4" placeholder="Any extra details..."></textarea>
+            </div>
+
+            <button type="submit" class="btn btn-primary w-100" [disabled]="customProductForm.invalid">Submit Request</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,54 @@
+.header {
+  height: 70px;
+  padding: 20px 50px;
+  background-color: rgb(1, 38, 69);
+  color: #fff;
+  display: flex;
+  justify-content: space-between;
+  box-shadow: 5px 5px 5px #939393;
+}
+
+.header .logo {
+  font-weight: bold;
+  font-size: 20px;
+}
+.header .logo:hover {
+  font-weight: bold;
+  font-size: 20px;
+  color: palevioletred;
+}
+
+.header .user {
+  display: flex;
+  align-items: center;
+  font-weight: bold;
+}
+
+.header .user .user-image {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  border: 2px solid #fff;
+  background-color: rgb(11, 107, 185);
+  margin-left: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+}
+.header .logout-btn {
+  background-color: rgb(11, 107, 185); /* Same as previous avatar background */
+  color: #fff; /* White text */
+  border: 2px solid #fff; /* White border */
+  border-radius: 20px; /* Rounded corners */
+  padding: 10px 20px; /* Padding for the button */
+  margin-left: 20px; /* Space between the user-name and the button */
+  font-weight: bold; /* Bold text */
+  cursor: pointer; /* Change cursor to pointer on hover */
+  transition: all 0.3s ease; /* Smooth hover effect */
+}
+
+.header .logout-btn:hover {
+  background-color: rgb(255, 69, 58); /* A red shade for hover to indicate logout */
+  border-color: rgb(255, 69, 58); /* Match border with background */
+}

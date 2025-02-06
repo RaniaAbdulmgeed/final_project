@@ -1,69 +1,23 @@
-/* Centered Title & Subtitle */
-.slider-container {
-  text-align: center;
-  margin-top: 30px;
-  margin-bottom: 20px;
+
+
+:host {
+  font-family: 'Georgia', serif;
+}
+.features i {
+  color: gray; /* Change icon color to gray */
+  font-size: 3rem; /* Increase the icon size (you can adjust the size as needed) */
+}
+/* Define the fade-in effect on hover */
+.product-image {
+  opacity: 1; /* Start with opacity 0 (invisible) */
+  transition: opacity 1s ease-in-out; /* Apply a smooth fade-in transition */
 }
 
-.slider-title {
-  font-size: 28px;
-  font-weight: bold;
-  color: #333;
-  margin-bottom: 5px;
-  text-transform: uppercase;
-  letter-spacing: 1px;
+.product-image:hover {
+  opacity: 1; /* When hovered, make the image fully visible */
 }
 
-.slider-subtitle {
-  font-size: 18px;
-  color: #777;
-  margin-bottom: 20px;
-}
-
-/* Slider Container */
-.image-slider {
-  width: 100%;
-  overflow: hidden;
-  position: relative;
-  border: 4px solid #ddd;
-  border-radius: 10px;
-  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-  padding: 15px;
-  background: #fff;
-}
-
-/* Image Track */
-.image-track {
-  display: flex;
-  width: calc(150px * 12 + 20px * 12);
-  animation: scroll 12s linear infinite;
-}
-
-.image-track img {
-  width: 150px;
-  height: auto;
-  margin: 0 10px;
-  flex-shrink: 0;
-  border-radius: 8px;
-  box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s ease-in-out;
-}
-
-/* Hover Effect */
-.image-track img:hover {
-  transform: scale(1.1);
-}
-
-/* Infinite Scrolling Animation */
-@keyframes scroll {
-  from {
-    transform: translateX(0);
-  }
-  to {
-    transform: translateX(-50%);
-  }
-}
-
+/******************************/
 
 /* Hero Carousel */
 #template-mo-jassa-hero-carousel { background: #efefef !important;}
@@ -157,7 +111,30 @@
   width: 6px;
   height: 6px;
 }
+/**************************************************************/
+/*IMAGES GROUP*/
 
+.bg-image {
+  position: relative;
+  overflow: hidden;
+}
+
+.hover-overlay .mask {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.3);
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.bg-image:hover .hover-overlay .mask {
+  opacity: 2;
+}
+
+/***********************************************************/
 @media (min-width: 576px) {
   .tempaltemo-carousel .h1 { font-size: 1em !important;}
 }
@@ -180,4 +157,47 @@
 
 /* Extra large devices (large desktops, 1200px and up)*/
 @media (min-width: 1200px) {}
+
+/*********************************************/
+
+/*--- Image hover Effects
+-----------------------------------------------*/
+.image-zoom-effect {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.image-zoom-effect .image-holder {
+  width: 100%;
+  height: auto;
+  overflow: hidden;
+  transform: scale(1);
+  transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.image-zoom-effect:hover .image-holder {
+  transform: scale(0.95);
+}
+
+.image-zoom-effect img {
+  transform: scale(1);
+  will-change: transform;
+  transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  z-index: 0;
+}
+
+.image-zoom-effect:hover img {
+  transform: scale(1.1);
+}
+/* Add margin to swiper-slide to create space between cards */
+.swiper-slide {
+  margin-right: 20px; /* Add space between cards */
+}
+
+/* Ensure the swiper wrapper is not wrapping too tight */
+.swiper-wrapper {
+  display: flex;
+  gap: 20px; /* Optional: to make sure all slides are spaced */
+}
+/****************************/
 

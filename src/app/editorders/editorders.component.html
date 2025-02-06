@@ -1,0 +1,60 @@
+<div class="container mt-5">
+  <div class="row justify-content-center">
+      <div class="col-md-8 col-lg-6">
+          <div class="card shadow-lg">
+              <div class="card-header bg-secondary text-white text-center">
+                  <h4><i class="fa-solid fa-box"></i> Edit Order</h4>
+              </div>
+              <div class="card-body">
+                  <form>
+                      <!-- Order ID (Hidden) -->
+                      <input type="hidden" id="order_id" value="1">
+
+                      <!-- User ID -->
+                      <div class="mb-3">
+                          <label for="user_id" class="form-label">User ID</label>
+                          <input type="text" class="form-control" id="user_id" placeholder="Enter user ID" required>
+                      </div>
+
+                      <!-- Total Price -->
+                      <div class="mb-3">
+                          <label for="total_price" class="form-label">Total Price ($)</label>
+                          <input type="number" class="form-control" id="total_price" placeholder="Enter total price" required>
+                      </div>
+
+                      <!-- Order Status -->
+                      <div class="mb-3">
+                          <label for="status" class="form-label">Order Status</label>
+                          <select class="form-select" id="status">
+                              <option value="pending">Pending</option>
+                              <option value="shipped">Shipped</option>
+                              <option value="delivered">Delivered</option>
+                              <option value="canceled">Canceled</option>
+                          </select>
+                      </div>
+
+                      <!-- Payment Status -->
+                      <div class="mb-3">
+                          <label for="payment_status" class="form-label">Payment Status</label>
+                          <select class="form-select" id="payment_status">
+                              <option value="pending">Pending</option>
+                              <option value="paid">Paid</option>
+                              <option value="failed">Failed</option>
+                          </select>
+                      </div>
+
+                      <!-- Buttons -->
+                      <div class="d-flex justify-content-between">
+                          <button type="submit" class="btn btn-success">
+                              <i class="fa-solid fa-save"></i> Save Changes
+                          </button>
+                          <button type="reset" class="btn btn-secondary">
+                              <i class="fa-solid fa-undo"></i> Reset
+                          </button>
+                      </div>
+                  </form>
+              </div>
+          </div>
+      </div>
+  </div>
+</div>

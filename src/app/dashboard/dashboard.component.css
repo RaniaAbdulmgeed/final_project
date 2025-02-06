@@ -1,0 +1,90 @@
+/* Sidebar styling */
+nav {
+  height: 100vh;
+  background-color: rgb(1, 38, 69);
+  color: #fff;
+  width: 15%;
+}
+
+nav .nav-item {
+  cursor: pointer;
+  padding: 15px 5px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  font-size: 16px;
+  margin: 10px 0;  /* Adds space above and below each item */
+}
+
+
+nav .nav-item:hover {
+  background-color: #495057;
+}
+
+nav .nav-item fa-icon {
+  margin-right: 10px;
+}
+
+main {
+  flex: 1;
+  margin-top: 5%;
+  background-color: #f8f9fa;
+}
+
+h2 {
+  font-size: 1.5rem;
+  margin-bottom: 15px;
+}
+/* Basic styling for the dropdown menu */
+.nav-dropdown {
+  list-style: none;
+  padding-left: 20px;
+  margin-top: 10px;
+  display: none; /* Initially hidden */
+}
+
+.nav-item:hover .nav-dropdown {
+  display: block; /* Show on hover */
+}
+
+.nav-dropdown li {
+  cursor: pointer;
+  padding: 10px 15px;
+  color: white;
+  background-color: #495057;
+}
+
+.nav-dropdown li:hover {
+  background-color: #2d343d;
+}
+
+.nav-dropdown a {
+  color: white;
+  text-decoration: none;
+  padding-left: 5px;
+}
+
+.nav-dropdown a:hover {
+  color: #00bcd4; /* You can change the hover color */
+}
+
+/* Add icons to indicate dropdown toggle */
+.fa-chevron-down,
+.fa-chevron-up {
+  margin-left: 10px;
+  font-size: 12px;
+  color: white;
+}
+
+.nav-item {
+  display: flex;
+  align-items: center;
+}
+
+.nav-item span {
+  margin-left: 10px;
+}
+
+.fa-pen {
+  margin-right: 5px;
+}

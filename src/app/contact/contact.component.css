@@ -9,3 +9,103 @@
   color: #000000 !important; /* Ensure text color matches the theme */
 }
 
+/**************************** INSTAGRAM SECTION *************************/
+
+/* Background Styling */
+.instagram {
+/*background: linear-gradient(to right, #efefef, #faecc5); Stylish gradient */
+padding: 60px 0;
+border-radius: 15px;
+border-top-style: solid;
+border-bottom-style: solid;
+}
+
+/* Centered Title */
+.instagram-title {
+text-align: center;
+font-size: 2.5rem;
+font-weight: bold;
+margin-bottom: 30px;
+color: #0b0b0a; /* White text for contrast */
+}
+
+/* Instagram Images */
+.instagram__pic {
+display: flex;
+flex-wrap: wrap;
+gap: 15px;
+justify-content: center;
+}
+
+.instagram__pic__item {
+width: calc(33.33% - 10px);
+border-radius: 20px;
+transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.instagram__pic__item:hover {
+transform: scale(1.08);
+box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.3);
+}
+
+/* Align text & images in the same row */
+.instagram .row {
+display: flex;
+align-items: center;
+}
+
+/* Instagram Text Styling */
+.instagram__text {
+text-align: left;
+color: #fff;
+padding: 20px;
+border-radius: 10px;
+}
+
+.instagram__text h2 {
+font-size: 1.8rem;
+color: #092b5a; /* Highlight color */
+font-weight: bold;
+}
+
+.instagram__text p {
+font-size: 1.1rem;
+color: #151414; /* Light gray */
+line-height: 1.6;
+}
+
+/* Button Styling */
+.btn-follow {
+display: inline-block;
+background: #7186ae;
+color: #131313;
+padding: 10px 20px;
+font-size: 1rem;
+font-weight: bold;
+text-transform: uppercase;
+border-radius: 8px;
+transition: 0.3s;
+text-decoration: none;
+}
+
+.btn-follow:hover {
+background: #33abdf;
+color: #141414;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+.instagram__pic {
+  flex-direction: column;
+  align-items: center;
+}
+
+.instagram__pic__item {
+  width: 80%;
+}
+
+.instagram__text {
+  text-align: center;
+}
+}

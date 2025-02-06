@@ -1,3 +1,23 @@
+<!-- <script>
+  document.addEventListener("DOMContentLoaded", function () {
+      // Adjust dropdown behavior to allow redirection while maintaining dropdown toggle
+      document.querySelectorAll(".nav-item.dropdown > a").forEach(function (dropdown) {
+          dropdown.addEventListener("click", function (event) {
+              let dropdownMenu = this.nextElementSibling;
+
+              // If the dropdown menu isn't already shown
+              if (!dropdownMenu.classList.contains("show")) {
+                  // Prevent Bootstrap default toggle action (prevents dropdown from showing)
+                  event.preventDefault();
+                  // Manually redirect to the link
+                  window.location.href = this.getAttribute("href");
+              }
+          });
+      });
+  });
+  </script> -->
+
+
 <div class="superNav border-bottom py-1 ">
   <div class="container">
     <div class="row">
@@ -16,7 +36,7 @@
   </div>
 </div>
 <nav class="navbar navbar-expand-lg bg-white sticky-top navbar-light p-3 shadow-sm">
-  <div class="container">
+  <div class="container-fluid"> <!-- Change container to container-fluid for full-width layout -->
     <a class="navbar-brand" href="#"><i class="fa-solid fa-shop me-2"></i> <strong>Opulenza</strong></a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -25,27 +45,46 @@
     <div class="mx-auto my-3 d-lg-none d-sm-block d-xs-block">
       <div class="input-group">
         <span class="border-warning input-group-text bg-warning text-white"><i class="fa-solid fa-magnifying-glass"></i></span>
-        <input type="text" class="form-control border-warning" style="color:#7a7a7a">
-        <button class="btn btn-warning text-white">Search</button>
+        <input type="text" class="form-control " style="color:#7a7a7a">
+        <button class="btn  text-white">Search</button>
       </div>
     </div>
-    <div class=" collapse navbar-collapse" id="navbarNavDropdown">
+    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+      <ul class="navbar-nav mx-auto"> <!-- Adjusted from ms-auto to mx-auto to center-align -->
+        <li class="nav-item">
+          <a class="nav-link mx-2 text-uppercase active"  href="/home">Home</a>
+        </li>
 
-      <ul class="navbar-nav ms-auto ">
+<!-- Men Dropdown -->
+<li class="nav-item dropdown">
+  <a class="nav-link dropdown-toggle mx-2 text-uppercase" href="/men" id="navbarDropdownMen" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Men
+  </a>
+  <ul class="dropdown-menu" aria-labelledby="navbarDropdownMen">
+    <li><a class="dropdown-item" href="/men">Shirts</a></li>
+    <li><a class="dropdown-item" href="#">Trousers</a></li>
+    <li><a class="dropdown-item" href="#">Shoes</a></li>
+  </ul>
+</li>
+
+<!-- Women Dropdown -->
+<li class="nav-item dropdown">
+  <a class="nav-link dropdown-toggle mx-2 text-uppercase" href="/woman" id="navbarDropdownWomen" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Women
+  </a>
+  <ul class="dropdown-menu" aria-labelledby="navbarDropdownWomen">
+    <li><a class="dropdown-item" href="/woman">Shirts</a></li>
+    <li><a class="dropdown-item" href="#">Trousers</a></li>
+    <li><a class="dropdown-item" href="#">Shoes</a></li>
+  </ul>
+</li>
+
+
         <li class="nav-item">
-          <a class="nav-link mx-2 text-uppercase active"  href="/home">Home</a><!--aria-current="page"-->
+          <a class="nav-link mx-2 text-uppercase" href="/accessories">Accessories</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link mx-2 text-uppercase" href="#">Women</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link mx-2 text-uppercase" href="#">Men</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link mx-2 text-uppercase" href="#">Shop</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link mx-2 text-uppercase" href="#">Product</a>
+          <a class="nav-link mx-2 text-uppercase" href="/shop">Shop</a>
         </li>
         <li class="nav-item">
           <a class="nav-link mx-2 text-uppercase" href="/about">About</a>
@@ -53,25 +92,92 @@
         <li class="nav-item">
           <a class="nav-link mx-2 text-uppercase" href="/contact">Contact</a>
         </li>
+        <li class="nav-item">
+          <a class="nav-link mx-2 text-uppercase" href="/productform">Design-It</a>
+        </li>
       </ul>
+
       <div class="ms-auto d-none d-lg-block">
         <div class="input-group">
-          <span class="border-warning input-group-text bg-warning text-white" ><i class="fa-solid fa-magnifying-glass" ></i></span>
+          <span class="border-warning input-group-text bg-warning text-white"><i class="fa-solid fa-magnifying-glass"></i></span>
           <input type="text" class="form-control border-warning" style="color:#7a7a7a">
           <button class="btn btn-warning text-white" style="background: #ffcc00;">Search</button>
         </div>
       </div>
-      <ul class="navbar-nav ms-auto ">
+
+      <ul class="navbar-nav ms-auto">
         <li class="nav-item">
-          <a class="nav-link mx-2 text-uppercase" href="#"><i class="fa-solid fa-heart"></i></a>
+          <a class="nav-link mx-2 text-uppercase" href="/wishlist"><i class="fa-solid fa-heart"></i></a>
         </li>
         <li class="nav-item">
-          <a class="nav-link mx-2 text-uppercase" href="#"><i class="fa-solid fa-bag-shopping"></i></a>
+          <a class="nav-link mx-2 text-uppercase" ><i class="fa-solid fa-bag-shopping" (click)="openModal()"></i></a>
         </li>
         <li class="nav-item">
-          <a class="nav-link mx-2 text-uppercase" href="#"><i class="fa-solid fa-circle-user me-1"></i> Account</a>
+          <a class="nav-link mx-2 text-uppercase" href="/login"><i class="fa-solid fa-right-to-bracket"></i> -Login</a>
         </li>
       </ul>
     </div>
   </div>
 </nav>
+<!-- <i class="fa-solid fa-circle-user me-1"></i>  -->
+<!-- Modal -->
+<div class="modal fade" id="cartModal" tabindex="-1" aria-labelledby="cartModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header d-flex justify-content-between">
+  <h5 class="modal-title" id="cartModalLabel">SHOPPING CART</h5>
+  <i class="fa-solid fa-x" data-bs-dismiss="modal" aria-label="Close" style="cursor: pointer;"></i>
+</div>
+
+      <div class="container">
+        <div class="card mb-2 border-0" style="max-width: 900px;">
+          <div class="row g-0 align-items-center">
+            <!-- صورة المنتج -->
+            <div class="col-md-4">
+              <img src="../../assets/imag/access (3).jpeg" class="img-fluid " style="width: 150px; height: 150px;" alt="...">
+            </div>
+
+            <!-- تفاصيل المنتج -->
+            <div class="col-md-6">
+              <div class="card-body">
+                <h5 class="card-title"> Classic Watch | Black</h5>
+                <p class="card-text"> price:800 EGP</p>
+              </div>
+            </div>
+
+            <div class="col-md-2 d-flex flex-column align-items-center">
+              <div class="d-flex align-items-center mb-2">
+                <div class="add d-flex flex-column align-items-center mb-1">
+                  <button class="btn-arrow icon-btn" (click)="increaseQuantity()">
+                    <i class="fas fa-chevron-up"></i>
+                  </button>
+
+                  <span class="fw-bold my-1 quantity-text">{{ quantity }}</span>
+
+                  <button class="btn-arrow icon-btn" (click)="decreaseQuantity()">
+                    <i class="	fas fa-chevron-down"></i>
+                  </button>
+                </div>
+
+
+
+
+                  <i class="fa-solid fa-xmark" (click)="removeItem()"></i>
+              </div>
+
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+      <div class="modal-footer">
+        <div class="btn-2 w-full">
+          <button type="button" class="btn-2" onclick="window.location.href='checkout'">CHECKOUT</button>
+        </div>
+                <div class="btn-1 w-full"><button type="button" class="btn-1" data-bs-dismiss="modal">CONTINUE SHOPPING</button></div>
+      </div>
+
+    </div>
+  </div>
+</div>

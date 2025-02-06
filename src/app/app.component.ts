@@ -15,7 +15,8 @@ export class AppComponent {
       const currentRoute = this.router.url;
 
       // Define routes where you don't want the header and footer
-      const noHeaderFooterRoutes = ['/dashboard']; // Add more routes if needed
+      const noHeaderFooterRoutes = ['/dashboard' , '/editusers' , '/editcategories' ,
+        '/editproducts' , '/editorders' , '/editpayments']; // Add more routes if needed
 
       // Show or hide header/footer based on the current route
       this.showHeaderFooter = !noHeaderFooterRoutes.includes(currentRoute);
@@ -23,7 +24,7 @@ export class AppComponent {
   }
 
   navigateToHome() {
-    this.router.navigate(['/homepage']); // Example of navigating to the homepage
+    this.router.navigate(['/home']); // Example of navigating to the homepage
   }
 
 }

@@ -1,0 +1,39 @@
+<div class="container mt-5">
+  <div class="row justify-content-center">
+      <div class="col-md-8 col-lg-6">
+          <div class="card shadow-lg">
+              <div class="card-header bg-secondary text-white text-center">
+                  <h4><i class="fa-solid fa-tags"></i> Edit Category</h4>
+              </div>
+              <div class="card-body">
+                  <form>
+                      <!-- Category ID (Hidden) -->
+                      <input type="hidden" id="category_id" value="1">
+
+                      <!-- Name -->
+                      <div class="mb-3">
+                          <label for="name" class="form-label">Category Name</label>
+                          <input type="text" class="form-control" id="name" placeholder="Enter category name" required>
+                      </div>
+
+                      <!-- Description -->
+                      <div class="mb-3">
+                          <label for="description" class="form-label">Description</label>
+                          <textarea class="form-control" id="description" rows="3" placeholder="Enter category description"></textarea>
+                      </div>
+
+                      <!-- Buttons -->
+                      <div class="d-flex justify-content-between">
+                          <button type="submit" class="btn btn-success">
+                              <i class="fa-solid fa-save"></i> Save Changes
+                          </button>
+                          <button type="reset" class="btn btn-secondary">
+                              <i class="fa-solid fa-undo"></i> Reset
+                          </button>
+                      </div>
+                  </form>
+              </div>
+          </div>
+      </div>
+  </div>
+</div>

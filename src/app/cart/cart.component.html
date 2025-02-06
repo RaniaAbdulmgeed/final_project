@@ -1,0 +1,96 @@
+<!-- <div *ngFor="let product of book" class="product">
+    <img  [src]="product.B_image"  alt="Card Image" class="image h-50 object-cover" style="width: 200px; height: 200px;">
+
+    <h3>{{ product.B_name }}</h3>
+    <p>Author: {{ product.B_author_name }}</p>
+    <p>Price: {{ product.B_price }} EGP</p>
+    <button (click)="addToCart(product.book_id)" class="btn btn-primary">Add to Cart</button>
+  </div> -->
+
+
+
+  <h1>Cart</h1>
+  <div class="container">
+    <div class="card mb-3 mt-5 " style=" max-width: 900px;">
+      <div class="row g-0 align-items-center">
+        <!-- صورة المنتج -->
+        <div class="col-md-4">
+          <img src="../../assets/img/7.jpg" class="img-fluid rounded-start" alt="...">
+        </div>
+
+        <!-- تفاصيل المنتج -->
+        <div class="col-md-6">
+          <div class="card-body">
+            <h5 class="card-title">Card title</h5>
+            <p class="card-text">
+              This is a wider card with supporting text below as a natural lead-in to additional content.
+            </p>
+          </div>
+        </div>
+
+        <div class="col-md-2 d-flex flex-column align-items-center">
+          <div class="d-flex align-items-center mb-2">
+            <div class="add d-flex align-items-center mb-2"><button class="btn-plus" (click)="increaseQuantity()">+</button>
+              <span class="fw-bold">{{ quantity }}</span>
+              <button class="btn-minus ms-2" (click)="decreaseQuantity()">-</button></div>
+              <i class="fa-solid fa-xmark" (click)="removeItem()"></i>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+
+
+  <i class="fa-solid fa-cart-shopping text-primary fs-4 cursor-pointer" (click)="openModal()"></i>
+
+  <!-- Modal -->
+  <div class="modal fade" id="cartModal" tabindex="-1" aria-labelledby="cartModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="cartModalLabel"> SHOPPING CART</h5>
+          <!-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> -->
+        </div>
+        <div class="container">
+          <div class="card mb-2 border-0" style="max-width: 900px;">
+            <div class="row g-0 align-items-center">
+              <!-- صورة المنتج -->
+              <div class="col-md-4">
+                <img src="../../assets/imag/access (3).jpeg" class="img-fluid " style="width: 150px; height: 150px;" alt="...">
+              </div>
+
+              <!-- تفاصيل المنتج -->
+              <div class="col-md-6">
+                <div class="card-body">
+                  <h5 class="card-title"> Classic Watch | Black</h5>
+                  <p class="card-text"> price:800 EGP</p>
+                </div>
+              </div>
+
+              <div class="col-md-2 d-flex flex-column align-items-center">
+                <div class="d-flex align-items-center mb-2">
+                  <div class="add d-flex align-items-center mb-2"><button class="btn-plus" (click)="increaseQuantity()">+</button>
+                    <span class="fw-bold">{{ quantity }}</span>
+                    <button class="btn-minus ms-2" (click)="decreaseQuantity()">-</button></div>
+                    <i class="fa-solid fa-xmark" (click)="removeItem()"></i>
+                </div>
+
+              </div>
+
+            </div>
+          </div>
+
+        </div>
+        <div class="modal-footer">
+          <div class="btn-2 w-full">
+            <button type="button" class="btn-2" onclick="window.location.href='checkout'">CHECKOUT</button>
+          </div>
+                  <div class="btn-1 w-full"><button type="button" class="btn-1" data-bs-dismiss="modal">CONTINUE SHOPPING</button></div>
+        </div>
+
+      </div>
+    </div>
+  </div>

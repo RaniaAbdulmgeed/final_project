@@ -1,12 +1,30 @@
+/* Remove extra padding from the navbar items */
+.navbar-nav .nav-item {
+  padding-left: 0;
+  padding-right: 0;
+}
+
+/* Reduce the padding between navbar links */
+.navbar-nav .nav-link {
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+/* Adjust the search input for better alignment */
+.navbar .input-group .form-control {
+  padding-left: 10px;
+}
+
+
 a {
   font-size: 14px;
   font-weight: 700;
-  color: #0d175e;
+  color: #27445D;
 }
 .superNav {
   font-size: 12px;
   color: white;
-  background-color: rgb(12, 12, 85);
+  background-color: #27445D;
 }
 .white-links {
   color: white !important; /* Ensure the text is white */
@@ -17,11 +35,11 @@ a {
   color: white !important; /* Ensure the icons are white */
 }
 .navbar-brand{
-  color: #0d175e;
-  font-size: 16px;
+  color: #27445D;
+  font-size: 20px;
 }
 .navbar-brand :hover{
-  color: #ffcc00;
+  color: #F3CA52;
 }
 .form-control {
   outline: none !important;
@@ -30,28 +48,28 @@ a {
 }
 /* Hover effect for links in superNav */
 .superNav a:hover {
-  color: #ffcc00 !important; /* Change color on hover */
+  color: #F3CA52 !important; /* Change color on hover */
 }
 
 /* Hover effect for Shipping and Policy links */
 .white-links:hover {
-  color: #ffcc00 !important; /* Change color on hover */
+  color: #F3CA52 !important; /* Change color on hover */
 }
 
 .white-links i:hover {
-  color: #ffcc00 !important; /* Change icon color on hover */
+  color: #F3CA52 !important; /* Change icon color on hover */
 }
 
 /* Active link style */
 .navbar-nav .nav-item .nav-link.active{
-  color: #ffcc00 !important; /* Change color for active links */
+  color: #F3CA52 !important; /* Change color for active links */
   /* border-top: 4px solid rgb(25, 20, 113); */
   border-bottom: 4px solid rgb(25, 20, 113);
 }
 
 /* Hover effect for navbar items */
 .navbar-nav .nav-item .nav-link:hover {
-  color: #ffcc00 !important; /* Change color on hover */
+  color: #F3CA52 !important; /* Change color on hover */
   /* border-top: 4px solid rgb(25, 20, 113); */
   border-bottom: 4px solid rgb(25, 20, 113);
 }
@@ -60,4 +78,106 @@ a {
   .centerOnMobile {
     text-align: center;
   }
+}
+/**************************/
+/* .container{
+  margin-top: 10%;
+} */
+
+h1{
+  text-align: center;
+  text-shadow:  2px 2px 2px rgb(134, 127, 127);
+}
+.cursor-pointer {
+  cursor: pointer;
+}
+.btn-plus{
+  background-color: rgb(228, 228, 222);
+  border-radius: 2px;
+  padding: 2px;
+  margin-right: 3px;
+  /* width: 40px; */
+}
+.btn-minus{
+  background-color: rgb(228, 228, 222);
+  border-radius: 2px;
+  padding: 3px;
+  margin-right: 3px;
+  /* width: 40px; */
+
+}
+
+.btn-1{
+  background-color: #DDA853;
+  color: white;
+  padding: 3px;
+  border-radius: 5px;
+  text-align: center;
+
+
+}
+.btn-2{
+  background-color: #0a0a0a;
+  border-radius: 5px;
+  padding: 3px;
+  text-align: center;
+  color: white;
+
+
+}
+.add {
+  border-radius: 2px;
+  margin-right: 20%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+.modal-footer .btn-2 {
+  background-color: #0e0e0e;
+  color: white;
+
+  border-radius: 5px;
+  text-align: center;
+
+  width: 100%;
+  border: none;
+}
+.modal-footer .btn-1{
+  background-color: #DDA853;
+  color: white;
+  border-radius: 5px;
+  text-align: center;
+  width: 100%;
+  border: none;
+
+}
+
+.btn-2 {
+  background-color: #0a0a0a;
+}
+
+.btn-1 {
+  background-color: #DDA853;
+}
+
+.modal-footer {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.icon-btn {
+  border: none;
+  background: none;
+  font-size: 20px;
+  cursor: pointer;
+  color: #b6b6b6;
+  transition: color 0.3s ease-in-out;
+}
+
+
+.quantity-text {
+  font-size: 14px;
+  font-weight: bold;
 }

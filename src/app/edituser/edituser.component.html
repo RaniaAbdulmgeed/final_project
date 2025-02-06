@@ -1,0 +1,60 @@
+<div class="container mt-5">
+  <div class="row justify-content-center">
+      <div class="col-md-8 col-lg-6">
+          <div class="card shadow-lg">
+              <div class="card-header bg-secondary text-white text-center">
+                  <h4><i class="fa-solid fa-user-edit"></i> Edit User</h4>
+              </div>
+              <div class="card-body">
+                  <form>
+                      <!-- User ID (Hidden) -->
+                      <input type="hidden" id="user_id" value="1">
+
+                      <!-- Name -->
+                      <div class="mb-3">
+                          <label for="name" class="form-label">Name</label>
+                          <input type="text" class="form-control" id="name" placeholder="Enter name" required>
+                      </div>
+
+                      <!-- Email -->
+                      <div class="mb-3">
+                          <label for="email" class="form-label">Email</label>
+                          <input type="email" class="form-control" id="email" placeholder="Enter email" required>
+                      </div>
+
+                      <!-- Phone -->
+                      <div class="mb-3">
+                          <label for="phone" class="form-label">Phone</label>
+                          <input type="tel" class="form-control" id="phone" placeholder="Enter phone number">
+                      </div>
+
+                      <!-- Address -->
+                      <div class="mb-3">
+                          <label for="address" class="form-label">Address</label>
+                          <textarea class="form-control" id="address" rows="2" placeholder="Enter address"></textarea>
+                      </div>
+
+                      <!-- Role -->
+                      <div class="mb-3">
+                          <label for="role" class="form-label">Role</label>
+                          <select class="form-select" id="role">
+                              <option value="customer">Customer</option>
+                              <option value="admin">Admin</option>
+                          </select>
+                      </div>
+
+                      <!-- Buttons -->
+                      <div class="d-flex justify-content-between">
+                          <button type="submit" class="btn btn-success">
+                              <i class="fa-solid fa-save"></i> Save Changes
+                          </button>
+                          <button type="reset" class="btn btn-secondary">
+                              <i class="fa-solid fa-undo"></i> Reset
+                          </button>
+                      </div>
+                  </form>
+              </div>
+          </div>
+      </div>
+  </div>
+</div>

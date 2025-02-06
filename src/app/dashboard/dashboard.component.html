@@ -1,0 +1,145 @@
+<div class="fluid">
+  <div class="header">
+    <app-dash-header></app-dash-header>
+  </div>
+</div>
+<div class="fluid">
+  <div class="d-flex">
+    <!-- Sidebar -->
+    <nav class="w-1/5 bg-gray-800 text-white p-4 flex flex-column">
+      <h2 class="text-2xl font-bold text-center mb-6">Admin Panel</h2>
+      <ul class="space-y-4">
+        <!-- Dashboard Section -->
+        <li class="nav-item" (click)="toggleTable('dashboard')">
+          <fa-icon [icon]="faHome"></fa-icon>
+          <span>Dashboard</span>
+        </li>
+        <!-- Users Section -->
+    <li class="nav-item dropdown" (click)="toggleTable('users')">
+      <a class="nav-link dropdown-toggle text-white" href="#" id="usersDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+        <fa-icon [icon]="faUser"></fa-icon> Users
+      </a>
+      <ul class="dropdown-menu" aria-labelledby="usersDropdown">
+        <li><a class="dropdown-item" href="/editusers"><fa-icon [icon]="faPen"></fa-icon> Edit User</a></li>
+      </ul>
+    </li>
+        <!-- Categories Section -->
+    <li class="nav-item dropdown" (click)="toggleTable('categories')">
+      <a class="nav-link dropdown-toggle text-white" href="#" id="categoriesDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+        <fa-icon [icon]="faStore"></fa-icon> Categories
+      </a>
+      <ul class="dropdown-menu" aria-labelledby="categoriesDropdown">
+        <li><a class="dropdown-item" href="/editcategories"><fa-icon [icon]="faPen"></fa-icon> Edit Category</a></li>
+      </ul>
+    </li>
+  <!-- Products Section -->
+  <li class="nav-item dropdown" (click)="toggleTable('products')">
+    <a class="nav-link dropdown-toggle text-white" href="#" id="productsDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+      <fa-icon [icon]="faBoxes"></fa-icon> Products
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="productsDropdown">
+      <li><a class="dropdown-item" href="/editproducts"><fa-icon [icon]="faPen"></fa-icon> Edit Product</a></li>
+    </ul>
+  </li>
+<!-- Orders Section -->
+<li class="nav-item dropdown" (click)="toggleTable('orders')">
+  <a class="nav-link dropdown-toggle text-white" href="#" id="ordersDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    <fa-icon [icon]="faShoppingCart"></fa-icon> Orders
+  </a>
+  <ul class="dropdown-menu" aria-labelledby="ordersDropdown">
+    <li><a class="dropdown-item" href="/editorders"><fa-icon [icon]="faPen"></fa-icon> Edit Order</a></li>
+  </ul>
+</li>
+<li class="nav-item dropdown" (click)="toggleTable('payments')">
+    <fa-icon [icon]="faShoppingCart"></fa-icon><span>Payments</span>
+</li>
+<li class="nav-item dropdown" (click)="toggleTable('contacts')">
+  <fa-icon [icon]="faShoppingCart"></fa-icon><span>Contacts</span>
+</li>
+      </ul>
+    </nav>
+
+    <!-- Main Content Area -->
+    <main class="flex-1 bg-white p-8 overflow-y-auto">
+      <div *ngIf="currentTable === 'dashboard'">
+        <h2 class="text-center text-2xl font-bold mb-4">Dashboard Content</h2>
+        <!-- Add dashboard content here -->
+      </div>
+
+      <div *ngIf="currentTable === 'users'">
+        <h2 class="text-center text-2xl font-bold mb-4">Users Content</h2>
+        <!-- Add users content here -->
+      </div>
+
+      <div *ngIf="currentTable === 'categories'">
+        <h2 class="text-center text-2xl font-bold mb-4">Categories Content</h2>
+        <!-- Add categories content here -->
+      </div>
+
+      <div *ngIf="currentTable === 'products'">
+        <h2 class="text-center text-2xl font-bold mb-4">Products Content</h2>
+
+        <!-- <h2 class="text-center text-2xl font-bold mb-4">Products Content</h2> -->
+        <!-- Add products content here -->
+        <div class="d-flex justify-content-center align-items-center mt-5 ">
+  <div class="table-responsive" style="width: 95%;">
+    <!-- <h2 class="text-center mb-4">Manage Products</h2> -->
+    <table class="table table-bordered table-hover">
+      <thead class="table-dark text-center">
+        <tr>
+          <th>ID</th>
+          <th>Name</th>
+          <th>Description</th>
+          <th>Category</th>
+          <th>Price</th>
+          <th>Discount</th>
+          <th>Stock</th>
+          <th>Size Options</th>
+          <th>Colors</th>
+          <th>Image</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let product of products">
+          <td>{{ product.id }}</td>
+          <td>{{ product.name }}</td>
+          <td>{{ product.description }}</td>
+          <td>{{ product.category }}</td>
+          <td>${{ product.price }}</td>
+          <td>{{ product.discount ? product.discount + '%' : 'N/A' }}</td>
+          <td>{{ product.stock_quantity }}</td>
+          <td>{{ formatSizes(product.size_options) }}</td>
+          <td>{{ formatColors(product.color_options) }}</td>
+          <td>
+            <img [src]="product.image_url" alt="Product Image" width="50" height="50" class="rounded">
+          </td>
+          <td class="text-center">
+            <i class="fa-regular fa-pen-to-square text-success"></i>
+            <a href="/editusers" class="text-success mx-2">Edit</a> |
+            <!-- <i class="fa-solid fa-list text-primary"></i> -->
+            <!-- <a href="#" class="text-primary mx-2">Details</a> | -->
+            <i class="fa-regular fa-trash-can text-danger"></i>
+            <a href="#" class="text-danger mx-2" (click)="deleteProduct(product.id)">Delete</a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+      </div>
+      <div *ngIf="currentTable === 'orders'">
+        <h2 class="text-center text-2xl font-bold mb-4">Orders Content</h2>
+        <!-- Add products content here -->
+      </div>
+      <div *ngIf="currentTable === 'payments'">
+        <h2 class="text-center text-2xl font-bold mb-4">Payments Content</h2>
+        <!-- Add products content here -->
+      </div>
+      <div *ngIf="currentTable === 'contacts'">
+        <h2 class="text-center text-2xl font-bold mb-4">Contact Us Content</h2>
+        <!-- Add products content here -->
+      </div>
+    </main>
+  </div>
+</div>

@@ -14,6 +14,7 @@
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
             "outputPath": "dist/final_project",
+            "allowedCommonJsDependencies": ["aos"],
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": [
@@ -27,12 +28,14 @@
             "styles": [
               "src/styles.css",
               "node_modules/bootstrap/dist/css/bootstrap.min.css",
+              "node_modules/aos/dist/aos.css",
               "node_modules/@fortawesome/fontawesome-free/css/all.min.css"
 
             ],
             "scripts": [
               "node_modules/jquery/dist/jquery.min.js",
               "node_modules/@popperjs/core/dist/umd/popper.min.js",
+              "node_modules/aos/dist/aos.js",
               "node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"
             ]
           },

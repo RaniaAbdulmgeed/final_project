@@ -1,0 +1,75 @@
+/* Wishlist Table */
+.table-responsive {
+  overflow-x: auto; /* Enable horizontal scrolling on small screens */
+}
+
+/* Ensure all product images have the same size */
+.table td img {
+  width: 80px; /* Fixed width */
+  height: 80px; /* Fixed height */
+  object-fit: cover; /* Prevent distortion */
+  border-radius: 5px;
+}
+
+/* Ensure product column items wrap properly */
+.table td.d-flex {
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+/* Remove Button */
+.remove-btn a {
+  font-size: 1.2rem;
+  transition: color 0.3s ease-in-out;
+}
+
+.remove-btn a:hover {
+  color: #ff0000;
+}
+
+/* Wishlist Actions */
+.btn-outline-dark, .btn-dark {
+  border-radius: 50px;
+  padding: 10px 20px;
+  margin: 5px;
+}
+
+.btn-dark:hover {
+  background: #000;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .table thead {
+    display: none; /* Hide table header on small screens */
+  }
+
+  .table, .table tbody, .table tr, .table td {
+    display: block;
+    width: 100%;
+  }
+
+  .table tr {
+    margin-bottom: 15px;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 10px;
+  }
+
+  .table td {
+    text-align: left;
+    padding-left: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .table td img {
+    width: 60px; /* Slightly smaller for mobile */
+    height: 60px;
+  }
+
+  .table td::before {
+    content: attr(data-label); /* Show labels for mobile */
+    font-weight: bold;
+  }
+}

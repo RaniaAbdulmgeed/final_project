@@ -1,0 +1,111 @@
+.container{
+  margin-top: 10%;
+}
+h1{
+  text-align: center;
+  text-shadow:  2px 2px 2px rgb(134, 127, 127);
+}
+.cursor-pointer {
+  cursor: pointer;
+}
+.btn-plus{
+  background-color: rgb(228, 228, 222);
+  border-radius: 2px;
+  padding: 2px;
+  margin-right: 3px;
+  /* width: 40px; */
+}
+.btn-minus{
+  background-color: rgb(228, 228, 222);
+  border-radius: 2px;
+  padding: 3px;
+  margin-right: 3px;
+  /* width: 40px; */
+
+}
+.add{
+  background-color: rgb(228, 228, 222);
+  border-radius: 2px;
+  width: 60px;
+  margin-right:20%;
+
+}
+.btn-1{
+  background-color: #DDA853;
+  color: white;
+  padding: 3px;
+  border-radius: 5px;
+  text-align: center;
+
+
+}
+.btn-2{
+  background-color: #0a0a0a;
+  border-radius: 5px;
+  padding: 3px;
+  text-align: center;
+  color: white;
+
+
+}
+
+.btn-plus, .btn-minus {
+  background-color: rgb(228, 228, 222);
+  border: none;
+  border-radius: 2px;
+  /* padding: 5px; */
+  margin-right: 3px;
+  width: 40px;
+  text-align: center;
+  /* font-weight: bold; */
+}
+
+.add {
+  background-color: rgb(228, 228, 222);
+  border-radius: 2px;
+  width: 60px;
+  margin-right: 20%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+.modal-footer .btn-2 {
+  background-color: #0e0e0e;
+  color: white;
+
+  border-radius: 5px;
+  text-align: center;
+
+  width: 100%;
+  border: none;
+}
+.modal-footer .btn-1{
+  background-color: #DDA853;
+  color: white;
+  /* padding: 10px; */
+  border-radius: 5px;
+  text-align: center;
+  /* margin-bottom: 10px; */
+  width: 100%; /* ملء العرض الكامل */
+  border: none; /* إزالة الحدود السوداء */
+
+}
+
+.btn-2 {
+  background-color: #0a0a0a;
+}
+
+.btn-1 {
+  background-color: #DDA853;
+}
+
+/* تحسين المظهر العام */
+.modal-footer {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+
