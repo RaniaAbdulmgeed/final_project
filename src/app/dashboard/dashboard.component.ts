@@ -1,71 +1,70 @@
-import { Component } from '@angular/core';
-import { faHome, faUser, faStore, faBoxes, faShoppingCart, faCogs,
-  faPen } from '@fortawesome/free-solid-svg-icons';
+import { Component, OnInit } from '@angular/core';
+import { ApiService } from '../services/api.service';
+import { faHome, faUser, faStore, faBoxes, faShoppingCart, faCogs, faPen } from '@fortawesome/free-solid-svg-icons';
+
+// ✅ Move type definition outside the @Component decorator
+type TableType = 'dashboard' | 'users' | 'categories' | 'products' | 'orders' | 'payments' | 'contacts';
+
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.css']
 })
-export class DashboardComponent {
-  faHome = faHome;            // Dashboard
-  faUser = faUser;            // Users
-  faStore = faStore;          // Categories
-  faBoxes = faBoxes;          // Products
-  faShoppingCart = faShoppingCart;  // Orders
-  faCogs = faCogs;            // Custom Product
-  faPen = faPen;      
-           // Sidebar Toggle Icon
-  // Variable to track the currently displayed table content
-  currentTable: string = 'dashboard'; // Default view is 'dashboard'
+export class DashboardComponent implements OnInit {
+  //FontAwesome Icons
+  faHome = faHome;
+  faUser = faUser;
+  faStore = faStore;
+  faBoxes = faBoxes;
+  faShoppingCart = faShoppingCart;
+  faCogs = faCogs;
+  faPen = faPen;
+  //Strictly typed currentTable
+  currentTable: TableType = 'dashboard';
+/******************************PAYMENT APIS************************/
+  //Payments array with proper type
+  payments: any[] = [];
 
-  // Function to toggle between different table views
-  toggleTable(table: string) {
+  constructor(private apiService: ApiService) {}
+
+  ngOnInit(): void {
+    this.loadPayments();
+  }
+
+  //Correctly defined function
+  toggleTable(table: TableType): void {
     this.currentTable = table;
   }
-   // Sample product data
-  products = [
-    {
-      id: 1,
-      name: 'Product 1',
-      description: 'Description of Product 1',
-      category: 'Category 1',
-      price: 100,
-      discount: 10,
-      stock_quantity: 50,
-      size_options: ['Small', 'Medium', 'Large'],
-      color_options: ['Red', 'Blue', 'Green'],
-      image_url: 'https://via.placeholder.com/50'
-    },
-    {
-      id: 2,
-      name: 'Product 2',
-      description: 'Description of Product 2',
-      category: 'Category 2',
-      price: 200,
-      discount: 15,
-      stock_quantity: 30,
-      size_options: ['Medium', 'Large'],
-      color_options: ['Black', 'White'],
-      image_url: 'https://via.placeholder.com/50'
+
+  //Fetch all payments from Laravel API
+  loadPayments(): void {
+    this.apiService.getPayments().subscribe(
+      (response) => {
+        if (response && response.data) {
+          this.payments = response.data;
+        } else {
+          console.warn('Unexpected API response format:', response);
+        }
+      },
+      (error) => {
+        console.error('Error fetching payments', error);
+      }
+    );
+  }
+  formatDate(dateString: string): string {
+    return new Date(dateString).toLocaleDateString();
+  }
+  deletePayment(paymentId: number): void {
+    if (confirm('Are you sure you want to delete this payment?')) {
+      this.apiService.deletePayment(paymentId).subscribe(
+        () => {
+          this.payments = this.payments.filter(payment => payment.id !== paymentId);
+        },
+        (error) => {
+          console.error('Error deleting payment', error);
+        }
+      );
     }
-    // More products can be added here
-  ];
-
-  // Format size options for display
-  formatSizes(sizes: string[]): string {
-    return sizes.join(', ');
   }
-
-  // Format color options for display
-  formatColors(colors: string[]): string {
-    return colors.join(', ');
-  }
-
-  // Delete product based on ID
-  deleteProduct(id: number): void {
-    this.products = this.products.filter(product => product.id !== id);
-  }
-
+/************************************************************ */
 }
-
-

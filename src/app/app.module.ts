@@ -32,6 +32,7 @@ import { CartComponent } from './cart/cart.component';
 import { AccessoriesComponent } from './accessories/accessories.component';
 import { OrdersComponent } from './orders/orders.component';
 import { NgChartsModule } from 'ng2-charts'; // Import NgChartsModule
+import { ApiService } from './services/api.service';
 @NgModule({
   declarations: [
     AppComponent,
@@ -71,7 +72,7 @@ import { NgChartsModule } from 'ng2-charts'; // Import NgChartsModule
     FontAwesomeModule,
     NgChartsModule
   ],
-  providers: [],
+  providers: [ApiService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
