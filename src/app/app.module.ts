@@ -33,6 +33,8 @@ import { AccessoriesComponent } from './accessories/accessories.component';
 import { OrdersComponent } from './orders/orders.component';
 import { NgChartsModule } from 'ng2-charts'; // Import NgChartsModule
 import { ApiService } from './services/api.service';
+import { CreatecategoryComponent } from './createcategory/createcategory.component';
+import { CreateproductComponent } from './createproduct/createproduct.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -61,7 +63,9 @@ import { ApiService } from './services/api.service';
     ProductComponent,
     CartComponent,
     AccessoriesComponent,
-    OrdersComponent
+    OrdersComponent,
+    CreatecategoryComponent,
+    CreateproductComponent
   ],
   imports: [
     BrowserModule,

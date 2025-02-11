@@ -3,68 +3,69 @@
     <app-dash-header></app-dash-header>
   </div>
 </div>
+
 <div class="container mt-5">
   <div class="row justify-content-center">
-      <div class="col-md-8 col-lg-6">
-          <div class="card shadow-lg">
-              <div class="card-header bg-secondary text-white text-center">
-                  <h4><i class="fa-solid fa-credit-card"></i> Edit Payment</h4>
-              </div>
-              <div class="card-body">
-                  <form>
-                      <!-- Payment ID (Hidden) -->
-                      <input type="hidden" id="payment_id" value="1">
+    <div class="col-md-8 col-lg-6">
+      <div class="card shadow-lg">
+        <div class="card-header bg-secondary text-white text-center">
+          <h4><i class="fa-solid fa-credit-card"></i> Edit Payment</h4>
+        </div>
+        <div class="card-body">
+          <form (submit)="updatePayment()">
+            <!-- Order ID -->
+            <div class="mb-3">
+              <label for="order_id" class="form-label">Order ID</label>
+              <input type="number" class="form-control" id="order_id" [(ngModel)]="paymentData.order_id" name="order_id" required>
+            </div>
 
-                      <!-- Order ID -->
-                      <div class="mb-3">
-                          <label for="order_id" class="form-label">Order ID</label>
-                          <input type="text" class="form-control" id="order_id" placeholder="Enter Order ID" required>
-                      </div>
+            <!-- User ID -->
+            <div class="mb-3">
+              <label for="user_id" class="form-label">User ID</label>
+              <input type="number" class="form-control" id="user_id" [(ngModel)]="paymentData.user_id" name="user_id" required>
+            </div>
 
-                      <!-- User ID -->
-                      <div class="mb-3">
-                          <label for="user_id" class="form-label">User ID</label>
-                          <input type="text" class="form-control" id="user_id" placeholder="Enter User ID" required>
-                      </div>
+            <!-- Payment Method -->
+            <div class="mb-3">
+              <label for="payment_method" class="form-label">Payment Method</label>
+              <select class="form-select" id="payment_method" [(ngModel)]="paymentData.payment_method" name="payment_method" required>
+                <option value="credit_card">Credit Card</option>
+                <option value="paypal">PayPal</option>
+                <option value="bank_transfer">Bank Transfer</option>
+              </select>
+            </div>
 
-                      <!-- Payment Method -->
-                      <div class="mb-3">
-                          <label for="payment_method" class="form-label">Payment Method</label>
-                          <select class="form-select" id="payment_method">
-                              <option value="credit_card">Credit Card</option>
-                              <option value="paypal">PayPal</option>
-                              <option value="bank_transfer">Bank Transfer</option>
-                          </select>
-                      </div>
+            <!-- Amount -->
+            <div class="mb-3">
+              <label for="amount" class="form-label">Amount ($)</label>
+              <input type="number" class="form-control" id="amount" [(ngModel)]="paymentData.amount" name="amount" step="0.01" min="0" required>
+            </div>
 
-                      <!-- Amount -->
-                      <div class="mb-3">
-                          <label for="amount" class="form-label">Amount ($)</label>
-                          <input type="number" class="form-control" id="amount" placeholder="Enter Amount" required>
-                      </div>
+            <!-- Payment Status -->
+            <div class="mb-3">
+              <label for="status" class="form-label">Payment Status</label>
+              <select class="form-select" id="status" [(ngModel)]="paymentData.status" name="status" required>
+                <option value="pending">Pending</option>
+                <option value="paid">Paid</option>
+                <option value="failed">Failed</option>
+              </select>
+            </div>
 
-                      <!-- Payment Status -->
-                      <div class="mb-3">
-                          <label for="status" class="form-label">Payment Status</label>
-                          <select class="form-select" id="status">
-                              <option value="pending">Pending</option>
-                              <option value="successful">Successful</option>
-                              <option value="failed">Failed</option>
-                          </select>
-                      </div>
+            <!-- State Field (Hidden) -->
+            <input type="hidden" [(ngModel)]="paymentData.state" name="state">
 
-                      <!-- Buttons -->
-                      <div class="d-flex justify-content-between">
-                          <button type="submit" class="btn btn-success">
-                              <i class="fa-solid fa-save"></i> Save Changes
-                          </button>
-                          <button type="reset" class="btn btn-secondary">
-                              <i class="fa-solid fa-undo"></i> Reset
-                          </button>
-                      </div>
-                  </form>
-              </div>
-          </div>
+            <!-- Buttons -->
+            <div class="d-flex justify-content-between">
+              <button type="submit" class="btn btn-success">
+                <i class="fa-solid fa-save"></i> Save Changes
+              </button>
+              <button type="button" class="btn btn-secondary" (click)="cancelUpdate()">
+                <i class="fa-solid fa-undo"></i> Cancel
+              </button>
+            </div>
+          </form>
+        </div>
       </div>
+    </div>
   </div>
 </div>

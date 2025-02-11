@@ -22,6 +22,8 @@ import { ProductComponent } from './product/product.component';
 import { CartComponent } from './cart/cart.component';
 import { AccessoriesComponent } from './accessories/accessories.component';
 import { NgChartsModule } from 'ng2-charts'; // Import NgChartsModule
+import { CreatecategoryComponent } from './createcategory/createcategory.component';
+import { CreateproductComponent } from './createproduct/createproduct.component';
 
 const routes: Routes =
 [
@@ -46,6 +48,13 @@ const routes: Routes =
   {path: 'checkout' , component:CheckoutComponent},
   {path: 'product' , component:ProductComponent},
   {path: 'cart' , component:CartComponent},
+  { path: 'editcategories/:id', component: EditcategoriesComponent },
+  { path: 'createcategory', component: CreatecategoryComponent },
+  { path: 'editproducts/:id', component: EditproductsComponent },
+  { path: 'editorders/:id', component: EditordersComponent },
+  { path: 'editpayments/:id', component: EditpaymentsComponent },
+  { path: 'createproduct', component: CreateproductComponent },
+
   {path: 'accessories' , component:AccessoriesComponent}
 ];
 

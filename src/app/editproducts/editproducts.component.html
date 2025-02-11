@@ -3,88 +3,89 @@
     <app-dash-header></app-dash-header>
   </div>
 </div>
+
 <div class="container mt-5">
   <div class="row justify-content-center">
-      <div class="col-md-10 col-lg-8">
-          <div class="card shadow-lg">
-              <div class="card-header bg-secondary text-white text-center">
-                  <h4><i class="fa-solid fa-shirt"></i> Edit Product</h4>
-              </div>
-              <div class="card-body">
-                  <form>
-                      <!-- Product ID (Hidden) -->
-                      <input type="hidden" id="product_id" value="1">
+    <div class="col-md-10 col-lg-8">
+      <div class="card shadow-lg">
+        <div class="card-header bg-secondary text-white text-center">
+          <h4><i class="fa-solid fa-shirt"></i> Edit Product</h4>
+        </div>
+        <div class="card-body">
+          <form (ngSubmit)="updateProduct()">
 
-                      <!-- Name -->
-                      <div class="mb-3">
-                          <label for="name" class="form-label">Product Name</label>
-                          <input type="text" class="form-control" id="name" placeholder="Enter product name" required>
-                      </div>
+            <!-- Product ID (Hidden) -->
+            <!-- <input type="hidden" [(ngModel)]="productData.product_id" name="product_id"> -->
 
-                      <!-- Description -->
-                      <div class="mb-3">
-                          <label for="description" class="form-label">Description</label>
-                          <textarea class="form-control" id="description" rows="3" placeholder="Enter product description"></textarea>
-                      </div>
+            <!-- Name -->
+            <div class="mb-3">
+              <label for="name" class="form-label">Product Name</label>
+              <input type="text" class="form-control" id="name" [(ngModel)]="productData.name" name="name" placeholder="Enter product name" required>
+            </div>
 
-                      <!-- Category -->
-                      <div class="mb-3">
-                          <label for="category" class="form-label">Category</label>
-                          <select class="form-select" id="category">
-                              <option value="1">Men's</option>
-                              <option value="2">Women's</option>
-                              <option value="3">Kids</option>
-                          </select>
-                      </div>
+            <!-- Description -->
+            <div class="mb-3">
+              <label for="description" class="form-label">Description</label>
+              <textarea class="form-control" id="description" [(ngModel)]="productData.description" name="description" rows="3" placeholder="Enter product description"></textarea>
+            </div>
 
-                      <!-- Price -->
-                      <div class="mb-3">
-                          <label for="price" class="form-label">Price ($)</label>
-                          <input type="number" class="form-control" id="price" placeholder="Enter price" required>
-                      </div>
+            <!-- Category -->
+            <div class="mb-3">
+              <label for="category_id" class="form-label">Category</label>
+              <select class="form-select" id="category_id" [(ngModel)]="productData.category_id" name="category_id">
+                <option *ngFor="let category of categories" [value]="category.id">{{ category.name }}</option>
+              </select>
+            </div>
 
-                      <!-- Discount -->
-                      <div class="mb-3">
-                          <label for="discount" class="form-label">Discount (%)</label>
-                          <input type="number" class="form-control" id="discount" placeholder="Enter discount (optional)">
-                      </div>
+            <!-- Price -->
+            <div class="mb-3">
+              <label for="price" class="form-label">Price ($)</label>
+              <input type="number" class="form-control" id="price" [(ngModel)]="productData.price" name="price" placeholder="Enter price" required>
+            </div>
 
-                      <!-- Stock Quantity -->
-                      <div class="mb-3">
-                          <label for="stock_quantity" class="form-label">Stock Quantity</label>
-                          <input type="number" class="form-control" id="stock_quantity" placeholder="Enter available stock">
-                      </div>
+            <!-- Discount -->
+            <div class="mb-3">
+              <label for="discount" class="form-label">Discount (%)</label>
+              <input type="number" class="form-control" id="discount" [(ngModel)]="productData.discount" name="discount" placeholder="Enter discount (optional)">
+            </div>
 
-                      <!-- Size Options (JSON Format) -->
-                      <div class="mb-3">
-                          <label for="size_options" class="form-label">Size Options (JSON)</label>
-                          <input type="text" class="form-control" id="size_options" placeholder='e.g., {"S": 10, "M": 5, "L": 8}'>
-                      </div>
+            <!-- Stock Quantity -->
+            <div class="mb-3">
+              <label for="stock_quantity" class="form-label">Stock Quantity</label>
+              <input type="number" class="form-control" id="stock_quantity" [(ngModel)]="productData.stock_quantity" name="stock_quantity" placeholder="Enter available stock">
+            </div>
 
-                      <!-- Color Options (JSON Format) -->
-                      <div class="mb-3">
-                          <label for="color_options" class="form-label">Color Options (JSON)</label>
-                          <input type="text" class="form-control" id="color_options" placeholder='e.g., ["Red", "Blue", "Black"]'>
-                      </div>
+            <!-- Size Options -->
+            <div class="mb-3">
+              <label for="size_options" class="form-label">Size Options (JSON)</label>
+              <input type="text" class="form-control" id="size_options" [(ngModel)]="productData.size_options" name="size_options" placeholder='e.g., {"S": 10, "M": 5, "L": 8}'>
+            </div>
 
-                      <!-- Image URL -->
-                      <div class="mb-3">
-                          <label for="image_url" class="form-label">Product Image URL</label>
-                          <input type="text" class="form-control" id="image_url" placeholder="Enter image URL">
-                      </div>
+            <!-- Color Options -->
+            <div class="mb-3">
+              <label for="color_options" class="form-label">Color Options (JSON)</label>
+              <input type="text" class="form-control" id="color_options" [(ngModel)]="productData.color_options" name="color_options" placeholder='e.g., ["Red", "Blue", "Black"]'>
+            </div>
 
-                      <!-- Buttons -->
-                      <div class="d-flex justify-content-between">
-                          <button type="submit" class="btn btn-success">
-                              <i class="fa-solid fa-save"></i> Save Changes
-                          </button>
-                          <button type="reset" class="btn btn-secondary">
-                              <i class="fa-solid fa-undo"></i> Reset
-                          </button>
-                      </div>
-                  </form>
-              </div>
-          </div>
+            <!-- Image Upload -->
+            <div class="mb-3">
+              <label for="image" class="form-label">Product Image</label>
+              <input type="file" id="image" class="form-control" (change)="onFileSelected($event)">
+            </div>
+
+            <!-- Buttons -->
+            <div class="d-flex justify-content-between">
+              <button type="submit" class="btn btn-primary">
+                <i class="fa-solid fa-save"></i> Update Product
+              </button>
+              <button type="reset" class="btn btn-secondary">
+                <i class="fa-solid fa-undo"></i> Reset
+              </button>
+            </div>
+
+          </form>
+        </div>
       </div>
+    </div>
   </div>
 </div>

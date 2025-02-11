@@ -1,18 +1,14 @@
-<div class="fluid">
-  <div class="header">
-    <app-dash-header></app-dash-header>
-  </div>
-</div>
+<p>createcategory works!</p>
 <div class="container mt-5">
   <div class="row justify-content-center">
     <div class="col-md-8 col-lg-6">
       <div class="card shadow-lg">
-        <div class="card-header bg-secondary text-white text-center">
-          <h4><i class="fa-solid fa-tags"></i> Edit Category</h4>
+        <div class="card-header bg-primary text-white text-center">
+          <h4><i class="fa-solid fa-plus"></i> Add New Category</h4>
         </div>
         <div class="card-body">
-          <form (submit)="updateCategory()">
-            <!-- Category Name -->
+          <form (submit)="addCategory()">
+            <!-- Name -->
             <div class="mb-3">
               <label for="name" class="form-label">Category Name</label>
               <input type="text" class="form-control" id="name" [(ngModel)]="categoryData.name" name="name" required>
@@ -24,12 +20,21 @@
               <textarea class="form-control" id="description" rows="3" [(ngModel)]="categoryData.description" name="description"></textarea>
             </div>
 
+            <!-- State -->
+            <div class="mb-3">
+              <label for="state" class="form-label">Category State</label>
+              <select class="form-control" id="state" [(ngModel)]="categoryData.state" name="state">
+                <option [value]="1">Active</option>
+                <option [value]="0">Inactive</option>
+              </select>
+            </div>
+
             <!-- Buttons -->
             <div class="d-flex justify-content-between">
               <button type="submit" class="btn btn-success">
-                <i class="fa-solid fa-save"></i> Save Changes
+                <i class="fa-solid fa-save"></i> Create Category
               </button>
-              <button type="button" class="btn btn-secondary" (click)="cancelUpdate()">
+              <button type="button" class="btn btn-secondary" (click)="router.navigate(['/categories'])">
                 <i class="fa-solid fa-undo"></i> Cancel
               </button>
             </div>

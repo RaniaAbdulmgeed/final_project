@@ -1,0 +1,87 @@
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-md-8 col-lg-6">
+      <div class="card shadow-lg">
+        <div class="card-header bg-primary text-white text-center">
+          <h4><i class="fa-solid fa-box"></i> Add New Product</h4>
+        </div>
+        <div class="card-body">
+          <form (submit)="addProduct()">
+            <!-- Name -->
+            <div class="mb-3">
+              <label for="name" class="form-label">Product Name</label>
+              <input type="text" class="form-control" id="name" [(ngModel)]="productData.name" name="name" required>
+            </div>
+
+            <!-- Description -->
+            <div class="mb-3">
+              <label for="description" class="form-label">Description</label>
+              <textarea class="form-control" id="description" rows="3" [(ngModel)]="productData.description" name="description"></textarea>
+            </div>
+
+            <!-- Category -->
+            <div class="mb-3">
+              <label for="category" class="form-label">Category</label>
+              <input type="number" class="form-control" id="category" [(ngModel)]="productData.category_id" name="category_id" required>
+            </div>
+
+            <!-- Price -->
+            <div class="mb-3">
+              <label for="price" class="form-label">Price ($)</label>
+              <input type="number" class="form-control" id="price" [(ngModel)]="productData.price" name="price" required>
+            </div>
+
+            <!-- Discount -->
+            <div class="mb-3">
+              <label for="discount" class="form-label">Discount (%)</label>
+              <input type="number" class="form-control" id="discount" [(ngModel)]="productData.discount" name="discount">
+            </div>
+
+            <!-- Stock Quantity -->
+            <div class="mb-3">
+              <label for="stock" class="form-label">Stock Quantity</label>
+              <input type="number" class="form-control" id="stock" [(ngModel)]="productData.stock_quantity" name="stock_quantity">
+            </div>
+
+            <!-- Size Options -->
+            <div class="mb-3">
+              <label for="size" class="form-label">Size Options (Comma-separated)</label>
+              <input type="text" class="form-control" id="size" [(ngModel)]="productData.size_options" name="size_options">
+            </div>
+
+            <!-- Color Options -->
+            <div class="mb-3">
+              <label for="color" class="form-label">Color Options (Comma-separated)</label>
+              <input type="text" class="form-control" id="color" [(ngModel)]="productData.color_options" name="color_options">
+            </div>
+
+            <!-- Image Upload -->
+            <div class="mb-3">
+              <label for="image" class="form-label">Product Image</label>
+              <input type="file" class="form-control" id="image" (change)="onFileSelected($event)">
+            </div>
+
+            <!-- State -->
+            <div class="mb-3">
+              <label for="state" class="form-label">Product State</label>
+              <select class="form-control" id="state" [(ngModel)]="productData.state" name="state">
+                <option [value]="1">Active</option>
+                <option [value]="0">Inactive</option>
+              </select>
+            </div>
+
+            <!-- Buttons -->
+            <div class="d-flex justify-content-between">
+              <button type="submit" class="btn btn-success">
+                <i class="fa-solid fa-save"></i> Create Product
+              </button>
+              <button type="button" class="btn btn-secondary" (click)="router.navigate(['/products'])">
+                <i class="fa-solid fa-undo"></i> Cancel
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
