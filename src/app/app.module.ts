@@ -8,14 +8,13 @@ import { HomeComponent } from './home/home.component';
 import { AboutComponent } from './about/about.component';
 import { ContactComponent } from './contact/contact.component';
 import { NavbarComponent } from './navbar/navbar.component';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import {  ReactiveFormsModule } from '@angular/forms';
 import { FooterComponent } from './footer/footer.component';
 import { ReviewComponent } from './review/review.component';
-import { LoginComponent } from './login/login.component';
 import { ProfileComponent } from './profile/profile.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { DashHeaderComponent } from './dash-header/dash-header.component';
-
+import { FormsModule } from '@angular/forms'; // <-- Import FormsModule
 import { CustomProductFormComponent } from './custom-product-form/custom-product-form.component';
 import { EdituserComponent } from './edituser/edituser.component';
 import { EditcategoriesComponent } from './editcategories/editcategories.component';
@@ -35,6 +34,8 @@ import { NgChartsModule } from 'ng2-charts'; // Import NgChartsModule
 import { ApiService } from './services/api.service';
 import { CreatecategoryComponent } from './createcategory/createcategory.component';
 import { CreateproductComponent } from './createproduct/createproduct.component';
+import { RegisterComponent } from './components/auth/register/register.component';
+import { LoginComponent } from './components/auth/login/login.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -65,7 +66,8 @@ import { CreateproductComponent } from './createproduct/createproduct.component'
     AccessoriesComponent,
     OrdersComponent,
     CreatecategoryComponent,
-    CreateproductComponent
+    CreateproductComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,

@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
+import { ApiService } from 'src/app/services/api.service';
 
 @Component({
   selector: 'app-review',
@@ -8,59 +10,57 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 })
 export class ReviewComponent implements OnInit {
   reviewForm: FormGroup;
-  reviews: any[] = []; // Stores submitted reviews
-  chunkedReviews: any[][] = [];
-  stars: number[] = [1, 2, 3, 4, 5]; // Star ratings
+  reviews: any[] = [];
+  stars = [1, 2, 3, 4, 5];
 
-  constructor(private fb: FormBuilder) {
+  constructor(
+    private fb: FormBuilder,
+    private route: ActivatedRoute,
+    private apiService: ApiService, // Use ApiService instead of ReviewService
+    public router: Router
+  ) {
     this.reviewForm = this.fb.group({
-      name: ['', Validators.required],
-      rating: [0, Validators.required],
-      review: ['', Validators.required],
+      name: ['', [Validators.required, Validators.maxLength(255)]],
+      rating: [0, [Validators.required, Validators.min(1), Validators.max(5)]],
+      review: ['', Validators.required]
     });
   }
 
   ngOnInit() {
-    this.loadReviews(); // Load reviews from local storage
-    this.chunkReviews();
+    this.fetchReviews();
   }
 
-  selectRating(stars: number) {
-    this.reviewForm.patchValue({ rating: stars });
-  }
-
+  // Submit Review
   submitReview() {
     if (this.reviewForm.valid) {
-      const newReview = {
-        ...this.reviewForm.value,
-        timestamp: new Date(),
-      };
-
-      this.reviews.unshift(newReview);
-      this.saveReviews(); // Save to local storage
-      this.chunkReviews(); // Re-chunk the reviews after adding a new one
-
-      // Reset form after submission
-      this.reviewForm.reset({ rating: 0 });
+      this.apiService.submitReview(this.reviewForm.value).subscribe({
+        next: (response) => {
+          console.log(response);
+          alert('Review submitted successfully!');
+          this.reviewForm.reset(); // Reset form
+          this.fetchReviews(); // Reload reviews
+        },
+        error: (error) => {
+          console.error('Error submitting review:', error);
+        }
+      });
     }
   }
 
-  chunkReviews() {
-    this.chunkedReviews = [];
-    for (let i = 0; i < this.reviews.length; i += 4) {
-      this.chunkedReviews.push(this.reviews.slice(i, i + 4));
-    }
+  // Fetch Reviews
+  fetchReviews() {
+    this.apiService.getReviews().subscribe({
+      next: (data) => {
+        this.reviews = data;
+      },
+      error: (error) => {
+        console.error('Error fetching reviews:', error);
+      }
+    });
   }
 
-  saveReviews() {
-    localStorage.setItem('reviews', JSON.stringify(this.reviews));
-  }
-
-  loadReviews() {
-    const storedReviews = localStorage.getItem('reviews');
-    if (storedReviews) {
-      this.reviews = JSON.parse(storedReviews);
-      this.chunkReviews(); // Re-chunk after loading
-    }
+  // Handle Star Selection
+  selectRating(star: number) {
+    this.reviewForm.patchValue({ rating: star });
   }
 }

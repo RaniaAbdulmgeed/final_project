@@ -4,7 +4,6 @@ import { AboutComponent } from './about/about.component';
 import { ContactComponent } from './contact/contact.component';
 import { HomeComponent } from './home/home.component';
 import { ReviewComponent } from './review/review.component';
-import { LoginComponent } from './login/login.component';
 import { ProfileComponent } from './profile/profile.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { CustomProductFormComponent } from './custom-product-form/custom-product-form.component';
@@ -24,6 +23,9 @@ import { AccessoriesComponent } from './accessories/accessories.component';
 import { NgChartsModule } from 'ng2-charts'; // Import NgChartsModule
 import { CreatecategoryComponent } from './createcategory/createcategory.component';
 import { CreateproductComponent } from './createproduct/createproduct.component';
+import { LoginComponent } from './components/auth/login/login.component';
+import { RegisterComponent } from './components/auth/register/register.component';
+import { AuthGuard } from './guards/auth.guard';
 
 const routes: Routes =
 [
@@ -32,13 +34,12 @@ const routes: Routes =
   {path: 'contact', component:ContactComponent},
   {path: 'home' , component:HomeComponent},
   {path: 'review' , component:ReviewComponent},
-  {path: 'login' , component:LoginComponent},
   {path: 'profile' , component:ProfileComponent},
-  {path: 'dashboard', component:DashboardComponent},
+  // {path: 'dashboard', component:DashboardComponent},
   {path: 'productform' , component:CustomProductFormComponent},
   {path: 'editusers' , component:EdituserComponent},
   {path: 'editcategories', component:EditcategoriesComponent},
-  {path: 'editproducts' , component:EditproductsComponent},
+  // {path: 'editproducts' , component:EditproductsComponent},
   {path: 'editorders' , component:EditordersComponent},
   {path: 'editpayments' , component:EditpaymentsComponent},
   {path: 'wishlist' , component:WishlistComponent},
@@ -54,8 +55,12 @@ const routes: Routes =
   { path: 'editorders/:id', component: EditordersComponent },
   { path: 'editpayments/:id', component: EditpaymentsComponent },
   { path: 'createproduct', component: CreateproductComponent },
+  {path: 'accessories' , component:AccessoriesComponent},
+  { path: 'login', component: LoginComponent },
+  { path: 'register', component: RegisterComponent },
+  { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard] },
+  { path: '**', redirectTo: 'login' }, // Redirect unknown routes
 
-  {path: 'accessories' , component:AccessoriesComponent}
 ];
 
 @NgModule({

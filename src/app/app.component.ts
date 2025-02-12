@@ -16,7 +16,7 @@ export class AppComponent {
 
       // Define routes where you don't want the header and footer
       const noHeaderFooterRoutes = ['/dashboard' , '/editusers' , '/editcategories' ,
-        '/editproducts' , '/editorders' , '/editpayments']; // Add more routes if needed
+        'editproducts/:id' , '/editorders' , '/editpayments' , '/login' , '/register']; // Add more routes if needed
 
       // Show or hide header/footer based on the current route
       this.showHeaderFooter = !noHeaderFooterRoutes.includes(currentRoute);

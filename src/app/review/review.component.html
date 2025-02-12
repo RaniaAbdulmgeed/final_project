@@ -32,6 +32,7 @@
               <label for="name">Your Name:</label>
               <input type="text" id="name" formControlName="name" placeholder="Enter your name" required>
             </div>
+
             <div class="form-group">
               <label>Rating:</label>
               <div class="rating">
@@ -40,12 +41,15 @@
                       [class.filled]="i < reviewForm.value.rating">★</span>
               </div>
             </div>
+
             <div class="form-group">
               <label for="review">Your Review:</label>
               <textarea id="review" formControlName="review" placeholder="Write your review..." required></textarea>
             </div>
+
             <button type="submit" [disabled]="reviewForm.invalid">Submit Review</button>
           </form>
+
         </div>
       </div>
     </div>
@@ -56,29 +60,35 @@
 
 <!--REVIEWS SECTION-->
 
-<div class="reviews-container" style="background-color: #f4f6f7; padding: 20px 0; margin-top: 20px;">
+<div class="reviews-container bg-light py-5 mt-4">
   <div class="text-center my-5">
     <h2 class="fw-bold">What Our Customers Say</h2>
     <p class="lead">Read the experiences shared by our valued customers.</p>
   </div>
-  <div class="review-row" *ngFor="let reviewChunk of chunkedReviews">
-    <div class="review-card" *ngFor="let review of reviewChunk">
-      <div class="review-header">
-        <img src="../assets/images/avatar/avatar-9.jpg" alt="" class="avatar" />
-        <div>
-          <h4>{{ review.name }}</h4>
-          <span class="timestamp">{{ review.timestamp | date:'short' }}</span>
+
+  <div class="container">
+    <div class="row g-4">
+      <div class="col-md-4" *ngFor="let review of reviews">
+        <div class="review-card p-4 shadow-sm rounded bg-white">
+          <div class="review-header d-flex align-items-center">
+            <div>
+              <h4 class="mb-1">{{ review.name }}</h4>
+              <span class="timestamp text-muted">{{ review.created_at | date:'short' }}</span>
+            </div>
+          </div>
+
+          <div class="rating my-2">
+            <ng-container *ngFor="let star of stars; let i = index">
+              <svg *ngIf="i < review.rating" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                    class="bi bi-star-fill text-warning" viewBox="0 0 16 16">
+                <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+              </svg>
+            </ng-container>
+          </div>
+
+          <p class="review-text text-secondary">"{{ review.review }}"</p>
         </div>
       </div>
-      <div class="rating">
-        <ng-container *ngFor="let star of stars; let i = index">
-          <svg *ngIf="i < review.rating" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-              class="bi bi-star-fill text-warning" viewBox="0 0 16 16">
-            <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
-          </svg>
-        </ng-container>
-      </div>
-      <p class="review-text">"{{ review.review }}"</p>
     </div>
   </div>
 </div>

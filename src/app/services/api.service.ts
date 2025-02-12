@@ -47,7 +47,7 @@ export class ApiService {
     updateProduct(id: number, data: any): Observable<any> {
       return this.http.put(`${this.apiUrl}/products/${id}`, data, this.getHttpOptions());
     }
-    
+
     patchProduct(productId: number, formData: FormData): Observable<any> {
       return this.http.patch(`${this.apiUrl}/${productId}`, formData);
     }
@@ -129,4 +129,24 @@ updateCategory(id: number, data: any): Observable<any> {
   deleteOrder(id: number): Observable<any> {
     return this.http.delete(`${this.apiUrl}/orders/${id}`, this.getHttpOptions());
   }
+
+  /**************************CONTACTS******************** */
+  submitContactForm(formData: any): Observable<any> {
+    return this.http.post(`${this.apiUrl}/contact`, formData, this.getHttpOptions());
+  }
+
+  /***********************REVIEWS************************* */
+// Submit review
+submitReview(reviewData: any): Observable<any> {
+  return this.http.post(`${this.apiUrl}/reviews`, reviewData, {
+    headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+  });
+}
+
+// Get reviews
+getReviews(): Observable<any> {
+  return this.http.get(`${this.apiUrl}/reviews`);
+}
+
+
 }
