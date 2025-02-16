@@ -1,85 +1,65 @@
 
 <section class="container my-5">
-  <h2 class="text-center mb-4">My Wishlist</h2>
 
-  <div class="table-responsive">
-      <table class="table table-bordered align-middle text-center">
+  <section class="container py-5">
+    <h2 class="text-center mb-4">My Wishlist ❤️</h2>
+
+    <div *ngIf="wishlist.length > 0; else emptyWishlist">
+      <div class="table-responsive">
+        <table class="table table-bordered align-middle text-center">
           <thead class="table-dark">
-              <tr>
-                  <th>Remove</th>
-                  <th>Product</th>
-                  <th>Price</th>
-                  <th>Stock Status</th>
-                  <th>Actions</th>
-              </tr>
+            <tr>
+              <th>Remove</th>
+              <th>Product</th>
+              <th>Price</th>
+              <th>Stock Status</th>
+              <th>Actions</th>
+            </tr>
           </thead>
           <tbody>
-              <!-- Wishlist Item 1 -->
-              <tr>
-                  <td class="remove-btn">
-                      <a href="#" class="text-danger"><i class="fas fa-times"></i></a>
-                  </td>
-                  <td class="d-flex align-items-center p-3">
-                      <img src="/assets/prod3.png" class="img-fluid me-3" alt="Product">
-                      <p class="mb-0">Natural Coconut Cleansing Oil</p>
-                  </td>
-                  <td>
-                      <span class="text-muted text-decoration-line-through">$39.00</span>
-                      <span class="fw-bold">$29.00</span>
-                  </td>
-                  <td class="text-success">In Stock</td>
-                  <td>
-                      <a href="#" class="btn btn-sm btn-outline-dark">Add to Cart</a>
-                  </td>
-              </tr>
-
-              <!-- Wishlist Item 2 -->
-              <tr>
-                  <td class="remove-btn">
-                      <a href="#" class="text-danger"><i class="fas fa-times"></i></a>
-                  </td>
-                  <td class="d-flex align-items-center p-3">
-                      <img src="/assets/prod2.png" class="img-fluid me-3" alt="Product">
-                      <p class="mb-0">Cleansing Balm</p>
-                  </td>
-                  <td>
-                      <span class="text-muted text-decoration-line-through">$39.00</span>
-                      <span class="fw-bold">$29.00</span>
-                  </td>
-                  <td class="text-danger">Out of Stock</td>
-                  <td>
-                      <a href="#" class="btn btn-sm btn-outline-dark">Notify Me</a>
-                  </td>
-              </tr>
-
-              <!-- Wishlist Item 3 -->
-              <tr>
-                  <td class="remove-btn">
-                      <a href="#" class="text-danger"><i class="fas fa-times"></i></a>
-                  </td>
-                  <td class="d-flex align-items-center p-3">
-                      <img src="/assets/prod1.png" class="img-fluid me-3" alt="Product">
-                      <p class="mb-0">Super Pure</p>
-                  </td>
-                  <td>
-                      <span class="text-muted text-decoration-line-through">$39.00</span>
-                      <span class="fw-bold">$29.00</span>
-                  </td>
-                  <td class="text-success">In Stock</td>
-                  <td>
-                      <a href="#" class="btn btn-sm btn-outline-dark">Add to Cart</a>
-                  </td>
-              </tr>
+            <tr *ngFor="let item of wishlist">
+              <td>
+                <button class="btn btn-danger btn-sm" (click)="removeFromWishlist(item.id)">
+                  ❌
+                </button>
+              </td>
+              <td class="d-flex align-items-center p-3">
+                <img [src]="item.image_url || 'assets/default.png'" class="img-fluid me-3" width="60" alt="Product">
+                <p class="mb-0">{{ item.name }}</p>
+              </td>
+              <td>
+                <span *ngIf="item.old_price" class="text-muted text-decoration-line-through">
+                  ${{ item.old_price }}
+                </span>
+                <span class="fw-bold">${{ item.price }}</span>
+              </td>
+              <td [class.text-success]="item.in_stock" [class.text-danger]="!item.in_stock">
+                {{ item.in_stock ? 'In Stock' : 'Out of Stock' }}
+              </td>
+              <td>
+                <!-- <button class="btn btn-sm btn-outline-dark" *ngIf="item.in_stock" (click)="addToCart(item)">
+                  Add to Cart
+                </button> -->
+                <button class="btn btn-sm btn-outline-dark" *ngIf="!item.in_stock">
+                  Notify Me
+                </button>
+              </td>
+            </tr>
           </tbody>
-      </table>
-  </div>
+        </table>
+      </div>
 
-  <!-- Wishlist Actions -->
-  <div class="text-center mt-4">
-      <a href="#" class="btn btn-outline-dark px-4">Continue Shopping</a>
-      <a href="#" class="btn btn-dark px-4">Update Wishlist</a>
-  </div>
-</section>
+      <!-- Wishlist Actions -->
+      <div class="text-center mt-4">
+        <a routerLink="/shop" class="btn btn-outline-dark px-4">Continue Shopping</a>
+      </div>
+    </div>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-
+    <!-- Empty Wishlist Message -->
+    <ng-template #emptyWishlist>
+      <div class="text-center">
+        <h3>Your wishlist is empty! 😞</h3>
+        <a routerLink="/shop" class="btn btn-dark mt-3">Browse Products</a>
+      </div>
+    </ng-template>
+  </section>

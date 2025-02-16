@@ -1,10 +1,88 @@
-import { Component } from '@angular/core';
-
+import { Component, AfterViewInit, OnInit } from '@angular/core';
+import AOS from 'aos';
+import { ApiService } from 'src/app/services/api.service';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-accessories',
   templateUrl: './accessories.component.html',
   styleUrls: ['./accessories.component.css']
 })
 export class AccessoriesComponent {
+  menProducts: any[] = [];
+  womenProducts: any[] = [];
+  accessoriesProducts: any[] = [];
+  cartItems: any[] = [];
+  wishlist: any[] = [];
 
+  constructor(private apiService: ApiService, private router: Router) {}
+
+  ngOnInit(): void {
+    this.loadCategoryProducts(7, 'men');
+    this.loadCategoryProducts(10, 'women');
+    this.loadCategoryProducts(12, 'accessories');
+  }
+
+  loadCategoryProducts(categoryId: number, section: string): void {
+    this.apiService.getProductsByCategory(categoryId).subscribe(
+      (response) => {
+        if (Array.isArray(response)) {
+          if (section === 'men') this.menProducts = response;
+          else if (section === 'women') this.womenProducts = response;
+          else if (section === 'accessories') this.accessoriesProducts = response;
+        } else {
+          console.error('Unexpected API response:', response);
+        }
+      },
+      (error) => {
+        console.error('Error fetching products:', error);
+      }
+    );
+  }
+
+  ngAfterViewInit() {
+    setTimeout(() => {
+      AOS.init();
+      AOS.refresh();
+    }, 100);
+  }
+
+  addToCart(product: any) {
+    const existingItem = this.cartItems.find((item) => item.id === product.id);
+
+    if (existingItem) {
+      existingItem.quantity += 1;
+    } else {
+      this.cartItems.push({
+        id: product.id,
+        name: product.name,
+        price: product.discount > 0
+          ? product.price - (product.price * product.discount / 100)
+          : product.price,
+        image: product.image_url || 'assets/default.png',
+        quantity: 1,
+      });
+    }
+
+    localStorage.setItem('cart', JSON.stringify(this.cartItems));
+    this.showAlert();
+  }
+
+  addToWishlist(product: any) {
+    if (!this.wishlist.find((item) => item.id === product.id)) {
+      this.wishlist.push(product);
+      localStorage.setItem('wishlist', JSON.stringify(this.wishlist));
+
+      if (confirm('Product added to Wishlist! ❤️\nView your wishlist?')) {
+        this.router.navigate(['/wishlist']);
+      }
+    } else {
+      alert('This product is already in your Wishlist.');
+    }
+  }
+
+  showAlert() {
+    if (confirm("Product added successfully! \nDo you want to view your cart?")) {
+      this.router.navigate(['/cart']);
+    }
+  }
 }

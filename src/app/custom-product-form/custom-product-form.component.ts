@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ApiService } from '../services/api.service';
 
 @Component({
   selector: 'app-custom-product-form',
@@ -8,43 +9,53 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 })
 export class CustomProductFormComponent {
   customProductForm: FormGroup;
-  productTypes = ['Dress', 'Shirt', 'Skirt', 'Pants']; // ENUM values
+  productTypes = ['Sunglasses', 'Reading Glasses', 'Prescription Glasses']; // Example types
 
-  constructor(private fb: FormBuilder) {
+  selectedFile: File | null = null; // Store the file before submitting
+
+  constructor(private fb: FormBuilder, private apiService: ApiService) {
     this.customProductForm = this.fb.group({
       name: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
       product_type: ['', Validators.required],
       size: [''],
       color: [''],
-      image_url: [''],
-      notes: ['']
+      image_url: [null], // File will be stored separately
+      notes: [''],
     });
   }
-  // Define getter functions for cleaner template usage
-get name() {
-  return this.customProductForm.get('name');
-}
 
-get email() {
-  return this.customProductForm.get('email');
-}
-
-
-  // Handle File Upload
   onFileChange(event: any) {
-    const file = event.target.files[0];
-    if (file) {
-      this.customProductForm.patchValue({ image_url: file.name });
+    if (event.target.files.length > 0) {
+      this.selectedFile = event.target.files[0];
     }
   }
 
-  // Handle Form Submission
   onSubmit() {
     if (this.customProductForm.valid) {
-      console.log('Form Data:', this.customProductForm.value);
-      alert('Your request has been submitted!');
-      this.customProductForm.reset(); // Reset form after submission
+      const formData = new FormData();
+      formData.append('name', this.customProductForm.get('name')?.value);
+      formData.append('email', this.customProductForm.get('email')?.value);
+      formData.append('product_type', this.customProductForm.get('product_type')?.value);
+      formData.append('size', this.customProductForm.get('size')?.value || '');
+      formData.append('color', this.customProductForm.get('color')?.value || '');
+      formData.append('notes', this.customProductForm.get('notes')?.value || '');
+
+      if (this.selectedFile) {
+        formData.append('image_url', this.selectedFile);
+      }
+
+      this.apiService.submitCustomProduct(formData).subscribe({
+        next: (response) => {
+          alert('Product submitted successfully!');
+          window.location.reload(); // Refresh the page
+        },
+        error: (error) => {
+          console.error('Error:', error);
+          alert('Failed to submit. Please try again.');
+        }
+      });
     }
   }
+
 }

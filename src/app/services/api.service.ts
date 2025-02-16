@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { Product } from '../models/product.model'; // Import the model
+import { FormGroup } from '@angular/forms';
 @Injectable({
   providedIn: 'root',
 })
@@ -42,6 +43,9 @@ export class ApiService {
         headers: { }, // ✅ Do NOT manually set Content-Type
       });
     }
+    getProductsByCategory(categoryId: number): Observable<any> {
+      return this.http.get<any>(`http://127.0.0.1:8000/api/products/category/${categoryId}`);
+    }
 
 
     updateProduct(id: number, data: any): Observable<any> {
@@ -67,6 +71,10 @@ export class ApiService {
 
   createPayment(data: any): Observable<any> {
     return this.http.post(`${this.apiUrl}/payments`, data, this.getHttpOptions());
+  }
+  /***************************NEWCHECKOUT************  */
+  checkout(data: any): Observable<any> {
+    return this.http.post(`${this.apiUrl}/checkout`, data, this.getHttpOptions());
   }
 
  // Update Payment API Call
@@ -146,6 +154,24 @@ submitReview(reviewData: any): Observable<any> {
 // Get reviews
 getReviews(): Observable<any> {
   return this.http.get(`${this.apiUrl}/reviews`);
+}
+
+/**************************** CUSTOM PRODUCT FORM API ****************************/
+submitCustomProduct(formData: FormData): Observable<any> {
+  return this.http.post(`${this.apiUrl}/custom-products`, formData);
+}
+
+/****************WISHLISTW************* */
+getWishlist(): Observable<any> {
+  return this.http.get(`${this.apiUrl}/wishlist`, this.getHttpOptions());
+}
+
+addToWishlist(productId: number): Observable<any> {
+  return this.http.post(`${this.apiUrl}/wishlist`, { product_id: productId }, this.getHttpOptions());
+}
+
+removeFromWishlist(wishlistId: number): Observable<any> {
+  return this.http.delete(`${this.apiUrl}/wishlist/${wishlistId}`, this.getHttpOptions());
 }
 
 

@@ -1,13 +1,13 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { tap } from 'rxjs/operators'; // ✅ Import tap
+import { tap } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
-  private apiUrl = 'http://127.0.0.1:8000/api'; // Change this if needed
+  private apiUrl = 'http://127.0.0.1:8000/api';
 
   constructor(private http: HttpClient) {}
 
@@ -19,21 +19,34 @@ export class AuthService {
     return this.http.post(`${this.apiUrl}/login`, credentials).pipe(
       tap((response: any) => {
         localStorage.setItem('token', response.token);
-        localStorage.setItem('role', response.role); // ✅ Store role
+        localStorage.setItem('role', response.role);
+        localStorage.setItem('userId', response.user.id); // ✅ Store user ID
       })
     );
   }
 
-  logout(): Observable<any> {
-    return this.http.post(`${this.apiUrl}/logout`, {}, { headers: this.getAuthHeaders() });
+  logout(): void {
+    this.http.post(`${this.apiUrl}/logout`, {}, { headers: this.getAuthHeaders() }).subscribe(() => {
+      localStorage.removeItem('token');
+      localStorage.removeItem('role');
+      localStorage.removeItem('userId');
+    });
   }
 
-  isLoggedIn(): boolean {
-    return !!localStorage.getItem('token');
-  }
-
-  getAuthHeaders() {
+  isAuthenticated(): boolean {
     const token = localStorage.getItem('token');
-    return { Authorization: `Bearer ${token}` };
+    return token !== null && token !== ''; // ✅ Ensures a valid token exists
+  }
+
+
+  getAuthHeaders(): HttpHeaders {
+    const token = localStorage.getItem('token');
+    return new HttpHeaders({
+      Authorization: `Bearer ${token}`,
+    });
+  }
+
+  getUserCart(): Observable<any> {
+    return this.http.get(`${this.apiUrl}/cart`, { headers: this.getAuthHeaders() });
   }
 }

@@ -11,9 +11,9 @@
 
 
 <h2>Clothes for all seasons</h2>
-<div class="card-container">
+<div class="card-container1">
   <!-- البطاقة الأولى -->
-  <div class="card">
+  <div class="card1">
     <div class="image-container">
       <img src="../../assets/imag/mens (3).jpeg" alt="Product Image" class="back-image">
       <div class="overlay">
@@ -24,7 +24,7 @@
   </div>
 
   <!-- البطاقة الثانية -->
-  <div class="card">
+  <div class="card1">
     <div class="image-container">
       <img src="../../assets/imag/mens (2).jpeg" alt="Product Image" class="back-image">
       <div class="overlay">
@@ -35,7 +35,7 @@
   </div>
 
   <!-- البطاقة الثالثة -->
-  <div class="card">
+  <div class="card1">
     <div class="image-container">
       <img src="../../assets/imag/1354a327-a2ce-4509-b05d-3fcf21fc873e.jpeg" alt="Product Image" class="back-image">
       <div class="overlay">
@@ -48,128 +48,104 @@
 </div>
 
 
-
-
-
-
-
-<div class="section2">
-  <h2 class="sec1-h2">Trending Now</h2>
-
-  <div class="container1 cards-container mt-5">
-      <div class="card-sec2" style="width: 15rem; position: relative;">
-
-
-          <img src="../../assets/imag/mens (1).jpeg" class="card-img-top" alt="...">
-
-          <div class="card-body">
-              <h5 class="card-title">Card title</h5>
-              <p class="card-text">Some quick example text to build on the card title </p>
-          <p class="price">price:15$</p>
-
-              <!-- Rating Section -->
-              <div class="rating" >
-                  <i class="fa-solid fa-star"></i>
-                  <i class="fa-solid fa-star"></i>
-                  <i class="fa-solid fa-star"></i>
-                  <i class="fa-solid fa-star"></i>
-                  <i class="fa-regular fa-star"></i>
+<!-- Men Page Sections -->
+<section id="men" >
+  <!-- Shirts Section -->
+  <section id="shirts" class="py-3">
+    <div class="text-center">
+      <h3 class="text-success">Shirts</h3>
+    </div>
+    <div class="container px-4 px-lg-5 mt-3">
+      <div class="row gx-4 gx-lg-5 row-cols-1 row-cols-md-3 row-cols-xl-4 justify-content-center">
+        <div class="col mb-5" *ngFor="let product of shirts">
+          <div class="card h-100 custom-card position-relative">
+            <div class="position-absolute top-0 end-0 p-2">
+              <button class="btn btn-light wishlist-btn" (click)="addToWishlist(product)">❤️</button>
+            </div>
+            <img class="card-img-top product-image" [src]="product.image_url || 'assets/default.png'" alt="{{ product.name }}" />
+            <div class="card-body p-4 d-flex flex-column">
+              <div class="text-center">
+                <h5 class="fw-bolder">{{ product.name }}</h5>
+                <span *ngIf="product.discount > 0" class="text-muted text-decoration-line-through">
+                  ${{ product.price }}
+                </span>
+                <span>
+                  ${{ product.discount > 0 ? product.price - (product.price * product.discount / 100) : product.price }}
+                </span>
               </div>
+            </div>
+            <div class="card-footer p-4 pt-0 border-top-0 bg-transparent text-center">
+              <button class="btn btn-outline-dark mt-auto" (click)="addToCart(product)">Add to cart</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-              <!-- Buttons -->
-              <div class="btn-group">
-                  <a href="#" class="btn "> Add to cart</a>
+  <!-- Trousers Section -->
+  <section id="trousers" class="py-3">
+    <div class="text-center">
+      <h3 class="text-success">Trousers</h3>
+    </div>
+    <div class="container px-4 px-lg-5 mt-3">
+      <div class="row gx-4 gx-lg-5 row-cols-1 row-cols-md-3 row-cols-xl-4 justify-content-center">
+        <div class="col mb-5" *ngFor="let product of trousers">
+          <div class="card h-100 custom-card position-relative">
+            <div class="position-absolute top-0 end-0 p-2">
+              <button class="btn btn-light wishlist-btn" (click)="addToWishlist(product)">❤️</button>
+            </div>
+            <img class="card-img-top product-image" [src]="product.image_url || 'assets/default.png'" alt="{{ product.name }}" />
+            <div class="card-body p-4 d-flex flex-column">
+              <div class="text-center">
+                <h5 class="fw-bolder">{{ product.name }}</h5>
+                <span *ngIf="product.discount > 0" class="text-muted text-decoration-line-through">
+                  ${{ product.price }}
+                </span>
+                <span>
+                  ${{ product.discount > 0 ? product.price - (product.price * product.discount / 100) : product.price }}
+                </span>
               </div>
+            </div>
+            <div class="card-footer p-4 pt-0 border-top-0 bg-transparent text-center">
+              <button class="btn btn-outline-dark mt-auto" (click)="addToCart(product)">Add to cart</button>
+            </div>
           </div>
+        </div>
       </div>
+    </div>
+  </section>
 
-
-
-
-
-
-
-    <div class="card-sec2" style="width: 15rem; position: relative;">
-
-
-      <img src="../../assets/imag/mens (2).jpeg" class="card-img-top" alt="...">
-
-      <div class="card-body">
-          <h5 class="card-title">Card title</h5>
-          <p class="card-text">Some quick example text to build on the card title </p>
-      <p class="price">price:15$</p>
-
-          <!-- Rating Section -->
-          <div class="rating" >
-              <i class="fa-solid fa-star"></i>
-              <i class="fa-solid fa-star"></i>
-              <i class="fa-solid fa-star"></i>
-              <i class="fa-solid fa-star"></i>
-              <i class="fa-regular fa-star"></i>
+  <!-- Shoes Section -->
+  <section id="shoes" class="py-3">
+    <div class="text-center">
+      <h3 class="text-success">Shoes</h3>
+    </div>
+    <div class="container px-4 px-lg-5 mt-3">
+      <div class="row gx-4 gx-lg-5 row-cols-1 row-cols-md-3 row-cols-xl-4 justify-content-center">
+        <div class="col mb-5" *ngFor="let product of shoes">
+          <div class="card h-100 custom-card position-relative">
+            <div class="position-absolute top-0 end-0 p-2">
+              <button class="btn btn-light wishlist-btn" (click)="addToWishlist(product)">❤️</button>
+            </div>
+            <img class="card-img-top product-image" [src]="product.image_url || 'assets/default.png'" alt="{{ product.name }}" />
+            <div class="card-body p-4 d-flex flex-column">
+              <div class="text-center">
+                <h5 class="fw-bolder">{{ product.name }}</h5>
+                <span *ngIf="product.discount > 0" class="text-muted text-decoration-line-through">
+                  ${{ product.price }}
+                </span>
+                <span>
+                  ${{ product.discount > 0 ? product.price - (product.price * product.discount / 100) : product.price }}
+                </span>
+              </div>
+            </div>
+            <div class="card-footer p-4 pt-0 border-top-0 bg-transparent text-center">
+              <button class="btn btn-outline-dark mt-auto" (click)="addToCart(product)">Add to cart</button>
+            </div>
           </div>
-
-          <!-- Buttons -->
-          <div class="btn-group">
-              <a href="#" class="btn "> Add to cart</a>
-          </div>
+        </div>
       </div>
-  </div>
-
-
-  <div class="card-sec2" style="width: 15rem; position: relative;">
-
-
-      <img src="../../assets/imag/mens (3).jpeg" class="card-img-top" alt="...">
-
-      <div class="card-body">
-          <h5 class="card-title">Card title</h5>
-          <p class="card-text">Some quick example text to build on the card title </p>
-      <p class="price">price:15$</p>
-
-          <!-- Rating Section -->
-          <div class="rating" >
-              <i class="fa-solid fa-star"></i>
-              <i class="fa-solid fa-star"></i>
-              <i class="fa-solid fa-star"></i>
-              <i class="fa-solid fa-star"></i>
-              <i class="fa-regular fa-star"></i>
-          </div>
-
-          <!-- Buttons -->
-          <div class="btn-group">
-              <a href="#" class="btn "> Add to cart</a>
-          </div>
-      </div>
-  </div>
-
-
-
-    <div class="card-sec2" style="width: 15rem; position: relative;">
-      <!-- Wishlist Icon -->
-
-
-      <img src="../../assets/imag/mens (4).jpeg" class="card-img-top" alt="...">
-
-      <div class="card-body">
-          <h5 class="card-title">Card title</h5>
-          <p class="card-text">Some quick example text to build on the card title </p>
-      <p class="price">price:15$</p>
-
-          <!-- Rating Section -->
-          <div class="rating" >
-              <i class="fa-solid fa-star"></i>
-              <i class="fa-solid fa-star"></i>
-              <i class="fa-solid fa-star"></i>
-              <i class="fa-solid fa-star"></i>
-              <i class="fa-regular fa-star"></i>
-          </div>
-
-          <!-- Buttons -->
-          <div class="btn-group">
-              <a href="#" class="btn "> Add to cart</a>
-          </div>
-      </div>
-  </div>
-</div>
-
-</div>
+    </div>
+  </section>
+</section>

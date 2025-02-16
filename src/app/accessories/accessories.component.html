@@ -41,85 +41,57 @@
 <!-- New Collection Section -->
 <div class="container my-5">
   <h2 class="text-center">New Collection</h2>
-  <div class="row">
-    <div class="col-md-4">
-      <div class="card">
-        <img src="../../assets/imag/access (1).jpeg" class="card-img-top" alt="New Accessory">
-        <div class="card-body">
-          <h5 class="card-title">Stylish Watch</h5>
-          <p class="card-text">A stylish watch for every occasion.</p>
-          <a href="#" class="btn btn-primary">Shop Now</a>
-        </div>
-      </div>
-    </div>
-    <div class="col-md-4">
-      <div class="card">
-        <img src="../../assets/imag/access (2).jpeg" class="card-img-top" alt="New Accessory">
-        <div class="card-body">
-          <h5 class="card-title">Leather Wallet</h5>
-          <p class="card-text">Crafted with genuine leather.</p>
-          <a href="#" class="btn btn-primary">Shop Now</a>
-        </div>
-      </div>
-    </div>
-    <div class="col-md-4">
-      <div class="card">
-        <img src="../../assets/imag/access (2).jpeg" class="card-img-top" alt="New Accessory">
-        <div class="card-body">
-          <h5 class="card-title">Elegant Necklace</h5>
-          <p class="card-text">The perfect accessory for any outfit.</p>
-          <a href="#" class="btn btn-primary">Shop Now</a>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
 
-<!-- Store Section -->
-<div class="container my-5">
-  <h2 class="text-center">Our Store</h2>
-  <div class="row">
-    <div class="col-md-3">
-      <div class="card shadow-sm">
-        <img src="../../assets/imag/access (1).jpeg" class="card-img-top" alt="Product 1">
-        <div class="card-body">
-          <h5 class="card-title">Gold Bracelet</h5>
-          <p class="card-text">$40.00</p>
-          <a href="#" class="btn btn-primary">Add to Cart</a>
+<!-- Accessories Section -->
+<section id="accessories" class="py-3">
+  <div class="text-center">
+    <h2 class="text-warning">Accessories</h2>
+  </div>
+
+  <div class="container px-4 px-lg-5 mt-5">
+    <div class="row gx-4 gx-lg-5 row-cols-1 row-cols-md-3 row-cols-xl-4 justify-content-center">
+
+      <!-- Loop through accessories products -->
+      <div class="col mb-5" *ngFor="let product of accessoriesProducts">
+        <div class="card h-100 custom-card position-relative">
+
+          <!-- Wishlist icon -->
+          <div class="position-absolute top-0 end-0 p-2">
+            <button class="btn btn-light wishlist-btn" (click)="addToWishlist(product)">❤️</button>
+          </div>
+
+          <!-- Product image -->
+          <img class="card-img-top product-image"
+               [src]="product.image_url || 'assets/default.png'"
+               alt="{{ product.name }}" />
+
+          <!-- Product details -->
+          <div class="card-body p-4 d-flex flex-column">
+            <div class="text-center">
+              <h5 class="fw-bolder">{{ product.name }}</h5>
+              <span *ngIf="product.discount > 0" class="text-muted text-decoration-line-through">
+                ${{ product.price }}
+              </span>
+              <span>
+                ${{ product.discount > 0
+                  ? product.price - (product.price * product.discount / 100)
+                  : product.price }}
+              </span>
+            </div>
+          </div>
+
+          <!-- Product actions -->
+          <div class="card-footer p-4 pt-0 border-top-0 bg-transparent text-center">
+            <button class="btn btn-outline-dark mt-auto" (click)="addToCart(product)">Add to cart</button>
+          </div>
+
         </div>
       </div>
-    </div>
-    <div class="col-md-3">
-      <div class="card shadow-sm">
-        <img src="../../assets/imag/access (2).jpeg" class="card-img-top" alt="Product 2">
-        <div class="card-body">
-          <h5 class="card-title">Silver Ring</h5>
-          <p class="card-text">$25.00</p>
-          <a href="#" class="btn btn-primary">Add to Cart</a>
-        </div>
-      </div>
-    </div>
-    <div class="col-md-3">
-      <div class="card shadow-sm">
-        <img src="../../assets/imag/assec.jpeg" class="card-img-top" alt="Product 3">
-        <div class="card-body">
-          <h5 class="card-title">Leather Bag</h5>
-          <p class="card-text">$75.00</p>
-          <a href="#" class="btn btn-primary">Add to Cart</a>
-        </div>
-      </div>
-    </div>
-    <div class="col-md-3">
-      <div class="card shadow-sm">
-        <img src="../../assets/imag/Bag Review_ Prada Saffiano Double-Handle Tote Bag _ Chronicles of Frivolity.jpeg" class="card-img-top" alt="Product 4">
-        <div class="card-body">
-          <h5 class="card-title">Sunglasses</h5>
-          <p class="card-text">$60.00</p>
-          <a href="#" class="btn btn-primary">Add to Cart</a>
-        </div>
-      </div>
+
     </div>
   </div>
+</section>
+
 </div>
 
 

@@ -199,5 +199,25 @@
   display: flex;
   gap: 20px; /* Optional: to make sure all slides are spaced */
 }
-/****************************/
+/*************PRODUCT CARDS***************/
+.custom-card {
+  height: 100%; /* Ensure all cards have the same height */
+  display: flex;
+  flex-direction: column;
+}
+
+.product-image {
+  height: 250px; /* Set a fixed height for images */
+  object-fit: cover; /* Ensures images fill the space without stretching */
+  width: 100%;
+}
+
+.card-body {
+  flex-grow: 1; /* Pushes the button to the bottom */
+}
+
+.card-footer {
+  text-align: center;
+}
+
 

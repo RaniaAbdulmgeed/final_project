@@ -7,56 +7,25 @@
   <div class="row">
       <!-- Cart Section -->
       <div class="col-md-4 order-2">
-          <h4 class="d-flex justify-content-between align-items-center mb-3">
-              <span class="text-muted">Your Cart</span>
-              <span class="badge rounded-pill bg-secondary">3</span>
-          </h4>
+        <h4 class="d-flex justify-content-between align-items-center mb-3">
+          <span class="text-muted">Your Cart</span>
+          <span class="badge rounded-pill bg-secondary">{{ cartItems.length }}</span>
+        </h4>
 
-          <ul class="list-group">
-              <li class="list-group-item d-flex justify-content-between lh-condensed">
-                  <div>
-                      <h6 class="my-0">Product name</h6>
-                      <small class="text-muted">Brief description</small>
-                  </div>
-                  <span class="text-muted">$12</span>
-              </li>
+        <ul class="list-group">
+          <li class="list-group-item d-flex justify-content-between lh-condensed" *ngFor="let item of cartItems">
+            <div>
+              <h6 class="my-0">{{ item.name }}</h6>
+              <small class="text-muted">Quantity: {{ item.quantity }}</small>
+            </div>
+            <span class="text-muted">${{ item.price * item.quantity }}</span>
+          </li>
+        </ul>
 
-              <li class="list-group-item d-flex justify-content-between lh-condensed">
-                  <div>
-                      <h6 class="my-0">Second product</h6>
-                      <small class="text-muted">Brief description</small>
-                  </div>
-                  <span class="text-muted">$8</span>
-              </li>
-
-              <li class="list-group-item d-flex justify-content-between lh-condensed">
-                  <div>
-                      <h6 class="my-0">Third item</h6>
-                      <small class="text-muted">Brief description</small>
-                  </div>
-                  <span class="text-muted">$5</span>
-              </li>
-
-              <li class="list-group-item d-flex justify-content-between bg-light">
-                  <div class="text-success">
-                      <h6 class="my-0">Promo code</h6>
-                      <small>EXAMPLECODE</small>
-                  </div>
-                  <span class="text-success">-$5</span>
-              </li>
-          </ul>
-
-          <div class="card-footer d-flex justify-content-between">
-              <span>Total (USD)</span>
-              <strong>$20</strong>
-          </div>
-
-          <form class="card p-2">
-              <div class="input-group">
-                  <input type="text" class="form-control" placeholder="Promo code">
-                  <button type="submit" class="btn btn-secondary">Redeem</button>
-              </div>
-          </form>
+        <div class="card-footer d-flex justify-content-between">
+          <span>Total (USD)</span>
+          <strong>${{ getTotalPrice() }}</strong>
+        </div>
       </div>
 
       <!-- Billing Address -->
@@ -65,11 +34,11 @@
           <div class="row">
               <div class="col mb-4">
                   <label for="first-name">First Name</label>
-                  <input type="text" class="form-control" id="first-name" placeholder="First name">
+                  <input type="text" class="form-control" id="first-name" placeholder="First name" [(ngModel)]="first_name">
               </div>
               <div class="col mb-4">
                   <label for="last-name">Last Name</label>
-                  <input type="text" class="form-control" id="last-name" placeholder="Last name">
+                  <input type="text" class="form-control" id="last-name" placeholder="Last name" [(ngModel)]="last_name">
               </div>
           </div>
 
@@ -80,12 +49,12 @@
 
           <div class="mb-4">
               <label for="email">Email (optional)</label>
-              <input type="email" class="form-control" id="email" placeholder="you@example.com">
+              <input type="email" class="form-control" id="email" placeholder="you@example.com" [(ngModel)]="email">
           </div>
 
           <div class="mb-4">
               <label for="address">Address</label>
-              <input type="text" class="form-control" id="address" placeholder="1234 Main St">
+              <input type="text" class="form-control" id="address" placeholder="1234 Main St" [(ngModel)]="billing_address">
           </div>
 
           <div class="mb-4">
@@ -98,18 +67,18 @@
                   <label for="country">Country</label>
                   <select class="form-select" id="country">
                       <option selected>Choose...</option>
-                      <option value="1">One</option>
-                      <option value="2">Two</option>
-                      <option value="3">Three</option>
+                      <option value="1">Assiut</option>
+                      <option value="2">Minya</option>
+                      <option value="3">Sohag</option>
                   </select>
               </div>
               <div class="col">
                   <label for="state">State</label>
                   <select class="form-select" id="state">
                       <option selected>Choose...</option>
-                      <option value="1">One</option>
-                      <option value="2">Two</option>
-                      <option value="3">Three</option>
+                      <option value="1">Egypt</option>
+                      <option value="2">Soudi</option>
+                      <option value="3">USA</option>
                   </select>
               </div>
               <div class="col mb-4">
@@ -133,21 +102,22 @@
           <hr class="mb-4">
 
           <div class="form-check">
-              <input class="form-check-input" type="radio" name="paymentMethod" id="credit" checked>
+            <input class="form-check-input" type="radio" name="paymentMethod" id="credit" value="credit" [(ngModel)]="payment_method" checked>
               <label class="form-check-label" for="credit">Credit card</label>
           </div>
           <div class="form-check">
-              <input class="form-check-input" type="radio" name="paymentMethod" id="debit">
+            <input class="form-check-input" type="radio" name="paymentMethod" id="debit" value="debit" [(ngModel)]="payment_method" >
               <label class="form-check-label" for="debit">Debit card</label>
           </div>
           <div class="form-check">
-              <input class="form-check-input" type="radio" name="paymentMethod" id="paypal">
+            <input class="form-check-input" type="radio" name="paymentMethod" id="paypal" value="paypal" [(ngModel)]="payment_method" >
               <label class="form-check-label" for="paypal">Paypal</label>
           </div>
 
-          <div class="d-grid gap-2">
-              <button class="btn btn-primary btn-lg" type="submit" style="margin-bottom: 50px;">Continue to Checkout</button>
-          </div>
+          <!-- Pay Now Button -->
+        <div class="d-grid gap-2">
+          <button class="btn btn-primary btn-lg" type="button" (click)="completePurchase()">Pay Now</button>
+        </div>
       </div>
   </div>
 </div>

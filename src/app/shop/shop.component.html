@@ -1,9 +1,10 @@
 <div class="shop-container">
   <div class="filters">
-   <a href="/women"> <button class="women-btn" >Women</button></a>
-   <a href="/men"><button class="men-btn" (click)="scrollToSection('men')">Men</button></a>
-   <a href="/accessory">  <button class="kids-btn" (click)="scrollToSection('Accessories')">Accessories</button></a>
-    </div>
+    <a href="#women"><button class="women-btn">Women</button></a>
+    <a href="#men"><button class="men-btn">Men</button></a>
+    <a href="#accessories"><button class="kids-btn">Accessories</button></a>
+ </div>
+
 
 
 
@@ -49,458 +50,156 @@
     </div>
     </div>
 
-  <div id="women" class="product-section container">
-      <h2> Women</h2>
+<!-- Men Section -->
+<section id="men" class="py-3">
+  <div class="text-center">
+    <h2 class="text-primary">Men</h2>
+  </div>
 
-      <div class="cards-container mt-5">
+  <div class="container px-4 px-lg-5 mt-5">
+    <div class="row gx-4 gx-lg-5 row-cols-1 row-cols-md-3 row-cols-xl-4 justify-content-center">
 
+      <!-- Loop through men's products -->
+      <div class="col mb-5" *ngFor="let product of menProducts">
+        <div class="card h-100 custom-card position-relative">
 
-
-        <div class="card" style="width: 15rem; position: relative;">
-          <!-- Wishlist Icon -->
-          <i class="fa-regular fa-heart wishlist-icon"
-          [ngClass]="{'fa-solid': isWishlisted, 'fa-regular': !isWishlisted, 'wishlist-active': isWishlisted}"
-          (click)="toggleWishlist()">
-       </i>
-
-          <img src="../../assets/imag/tr (2).jpeg" class="card-img-top" alt="...">
-
-          <div class="card-body">
-              <h5 class="card-title">Card title</h5>
-              <p class="card-text">Some quick example text to build on the card title </p>
-          <p class="price">price:15$</p>
-
-              <!-- Rating Section -->
-              <div class="rating" >
-                  <i class="fa-solid fa-star"></i>
-                  <i class="fa-solid fa-star"></i>
-                  <i class="fa-solid fa-star"></i>
-                  <i class="fa-solid fa-star"></i>
-                  <i class="fa-regular fa-star"></i>
-              </div>
-
-              <!-- Buttons -->
-              <div class="btn-group">
-                  <a href="/product" class="btn "> Add to cart</a>
-              </div>
+          <!-- Wishlist icon -->
+          <div class="position-absolute top-0 end-0 p-2">
+            <button class="btn btn-light wishlist-btn" (click)="addToWishlist(product)">❤️</button>
           </div>
-      </div>
 
+          <!-- Product image -->
+          <img class="card-img-top product-image"
+               [src]="product.image_url || 'assets/default.png'"
+               alt="{{ product.name }}" />
 
-
-
-
-      <div class="card" style="width: 15rem; position: relative;">
-        <!-- Wishlist Icon -->
-        <i class="fa-regular fa-heart wishlist-icon"
-        [ngClass]="{'fa-solid': isWishlisted, 'fa-regular': !isWishlisted, 'wishlist-active': isWishlisted}"
-        (click)="toggleWishlist()">
-     </i>
-
-        <img src="../../assets/imag/Outfit.jpeg" class="card-img-top" alt="...">
-
-        <div class="card-body">
-            <h5 class="card-title">Card title</h5>
-            <p class="card-text">Some quick example text to build on the card title </p>
-        <p class="price">price:15$</p>
-
-            <!-- Rating Section -->
-            <div class="rating" >
-                <i class="fa-solid fa-star"></i>
-                <i class="fa-solid fa-star"></i>
-                <i class="fa-solid fa-star"></i>
-                <i class="fa-solid fa-star"></i>
-                <i class="fa-regular fa-star"></i>
+          <!-- Product details -->
+          <div class="card-body p-4 d-flex flex-column">
+            <div class="text-center">
+              <h5 class="fw-bolder">{{ product.name }}</h5>
+              <span *ngIf="product.discount > 0" class="text-muted text-decoration-line-through">
+                ${{ product.price }}
+              </span>
+              <span>
+                ${{ product.discount > 0
+                  ? product.price - (product.price * product.discount / 100)
+                  : product.price }}
+              </span>
             </div>
+          </div>
 
-            <!-- Buttons -->
-            <div class="btn-group">
-                <a href="#" class="btn "> Add to cart</a>
-            </div>
+          <!-- Product actions -->
+          <div class="card-footer p-4 pt-0 border-top-0 bg-transparent text-center">
+            <button class="btn btn-outline-dark mt-auto" (click)="addToCart(product)">Add to cart</button>
+          </div>
+
         </div>
-    </div>
-
-        <div class="card" style="width: 15rem; position: relative;">
-          <!-- Wishlist Icon -->
-          <i class="fa-regular fa-heart wishlist-icon"
-          [ngClass]="{'fa-solid': isWishlisted, 'fa-regular': !isWishlisted, 'wishlist-active': isWishlisted}"
-          (click)="toggleWishlist()">
-       </i>
-
-          <img src="../../assets/imag/tr (2).jpeg" class="card-img-top" alt="...">
-
-          <div class="card-body">
-              <h5 class="card-title">Card title</h5>
-              <p class="card-text">Some quick example text to build on the card title </p>
-          <p class="price">price:15$</p>
-
-              <!-- Rating Section -->
-              <div class="rating" >
-                  <i class="fa-solid fa-star"></i>
-                  <i class="fa-solid fa-star"></i>
-                  <i class="fa-solid fa-star"></i>
-                  <i class="fa-solid fa-star"></i>
-                  <i class="fa-regular fa-star"></i>
-              </div>
-
-              <!-- Buttons -->
-              <div class="btn-group">
-                  <a href="#" class="btn "> Add to cart</a>
-              </div>
-          </div>
-      </div>
-
-
-        <div class="card" style="width: 15rem; position: relative;">
-          <!-- Wishlist Icon -->
-          <i class="fa-regular fa-heart wishlist-icon"
-          [ngClass]="{'fa-solid': isWishlisted, 'fa-regular': !isWishlisted, 'wishlist-active': isWishlisted}"
-          (click)="toggleWishlist()">
-       </i>
-
-          <img src="../../assets/imag/tr (1).jpeg" class="card-img-top" alt="...">
-
-          <div class="card-body">
-              <h5 class="card-title">Card title</h5>
-              <p class="card-text">Some quick example text to build on the card title </p>
-          <p class="price">price:15$</p>
-
-              <!-- Rating Section -->
-              <div class="rating" >
-                  <i class="fa-solid fa-star"></i>
-                  <i class="fa-solid fa-star"></i>
-                  <i class="fa-solid fa-star"></i>
-                  <i class="fa-solid fa-star"></i>
-                  <i class="fa-regular fa-star"></i>
-              </div>
-
-              <!-- Buttons -->
-              <div class="btn-group">
-                  <a href="#" class="btn "> Add to cart</a>
-              </div>
-          </div>
-      </div>
-
-        <!-- نسخ البطاقات الأخرى هنا -->
-      </div>
-    </div>
-
-
-
-
-    <div id="men" class="product-section container">
-      <h2> Men</h2>
-
-      <div class="cards-container mt-5">
-
-
-          <div class="card" style="width: 15rem; position: relative;">
-              <!-- Wishlist Icon -->
-              <i class="fa-regular fa-heart wishlist-icon"
-              [ngClass]="{'fa-solid': isWishlisted, 'fa-regular': !isWishlisted, 'wishlist-active': isWishlisted}"
-              (click)="toggleWishlist()">
-           </i>
-
-              <img src="../../assets/imag/men (1).jpeg" class="card-img-top" alt="...">
-
-              <div class="card-body">
-                  <h5 class="card-title">Card title</h5>
-                  <p class="card-text">Some quick example text to build on the card title </p>
-              <p class="price">price:15$</p>
-
-                  <!-- Rating Section -->
-                  <div class="rating" >
-                      <i class="fa-solid fa-star"></i>
-                      <i class="fa-solid fa-star"></i>
-                      <i class="fa-solid fa-star"></i>
-                      <i class="fa-solid fa-star"></i>
-                      <i class="fa-regular fa-star"></i>
-                  </div>
-
-                  <!-- Buttons -->
-                  <div class="btn-group">
-                      <a href="#" class="btn "> Add to cart</a>
-                  </div>
-              </div>
-          </div>
-
-          <div class="card" style="width: 15rem; position: relative;">
-              <!-- Wishlist Icon -->
-              <i class="fa-regular fa-heart wishlist-icon"
-              [ngClass]="{'fa-solid': isWishlisted, 'fa-regular': !isWishlisted, 'wishlist-active': isWishlisted}"
-              (click)="toggleWishlist()">
-           </i>
-
-              <img src="../../assets/imag/mens (1).jpeg" class="card-img-top" alt="...">
-
-              <div class="card-body">
-                  <h5 class="card-title">Card title</h5>
-                  <p class="card-text">Some quick example text to build on the card title </p>
-              <p class="price">price:15$</p>
-
-                  <!-- Rating Section -->
-                  <div class="rating" >
-                      <i class="fa-solid fa-star"></i>
-                      <i class="fa-solid fa-star"></i>
-                      <i class="fa-solid fa-star"></i>
-                      <i class="fa-solid fa-star"></i>
-                      <i class="fa-regular fa-star"></i>
-                  </div>
-
-                  <!-- Buttons -->
-                  <div class="btn-group">
-                      <a href="#" class="btn "> Add to cart</a>
-                  </div>
-              </div>
-          </div>
-
-
-
-          <div class="card" style="width: 15rem; position: relative;">
-              <!-- Wishlist Icon -->
-              <i class="fa-regular fa-heart wishlist-icon"
-              [ngClass]="{'fa-solid': isWishlisted, 'fa-regular': !isWishlisted, 'wishlist-active': isWishlisted}"
-              (click)="toggleWishlist()">
-           </i>
-
-              <img src="../../assets/imag/men (3).jpeg" class="card-img-top" alt="...">
-
-              <div class="card-body">
-                  <h5 class="card-title">Card title</h5>
-                  <p class="card-text">Some quick example text to build on the card title </p>
-              <p class="price">price:15$</p>
-
-                  <!-- Rating Section -->
-                  <div class="rating" >
-                      <i class="fa-solid fa-star"></i>
-                      <i class="fa-solid fa-star"></i>
-                      <i class="fa-solid fa-star"></i>
-                      <i class="fa-solid fa-star"></i>
-                      <i class="fa-regular fa-star"></i>
-                  </div>
-
-                  <!-- Buttons -->
-                  <div class="btn-group">
-                      <a href="#" class="btn "> Add to cart</a>
-                  </div>
-              </div>
-          </div>
-
-
-
-          <div class="card" style="width: 15rem; position: relative;">
-              <!-- Wishlist Icon -->
-              <i class="fa-regular fa-heart wishlist-icon"
-              [ngClass]="{'fa-solid': isWishlisted, 'fa-regular': !isWishlisted, 'wishlist-active': isWishlisted}"
-              (click)="toggleWishlist()">
-           </i>
-
-              <img src="../../assets/imag/mens (3).jpeg" class="card-img-top" alt="...">
-
-              <div class="card-body">
-                  <h5 class="card-title">Card title</h5>
-                  <p class="card-text">Some quick example text to build on the card title </p>
-              <p class="price">price:15$</p>
-
-                  <!-- Rating Section -->
-                  <div class="rating" >
-                      <i class="fa-solid fa-star"></i>
-                      <i class="fa-solid fa-star"></i>
-                      <i class="fa-solid fa-star"></i>
-                      <i class="fa-solid fa-star"></i>
-                      <i class="fa-regular fa-star"></i>
-                  </div>
-
-                  <!-- Buttons -->
-                  <div class="btn-group" >
-                      <button  class="btn "(click)="openModal()"  > Add to cart</button>
-                  </div>
-              </div>
-          </div>
-
-
-
-</div>
-</div>
-
-
-
-<!-- Modal -->
-<div class="modal fade" id="cartModal" tabindex="-1" aria-labelledby="cartModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="cartModalLabel"> SHOPPING CART</h5>
-        <!-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> -->
-      </div>
-      <div class="container">
-        <div class="card mb-2 border-0" style="max-width: 900px;">
-          <div class="row g-0 align-items-center">
-            <div class="col-md-4">
-              <img src="../../assets/imag/7.jpg" class="img-fluid " style="width: 150px; height: 150px;" alt="...">
-            </div>
-
-            <div class="col-md-6">
-              <div class="card-body">
-                <h5 class="card-title"> dress | size-m</h5>
-                <p class="card-text"> price:150 EGP</p>
-              </div>
-            </div>
-
-            <div class="col-md-2 d-flex flex-column align-items-center">
-              <div class="d-flex align-items-center mb-2">
-                <div class="add d-flex align-items-center mb-2"><button class="btn-plus" (click)="increaseQuantity()">+</button>
-                  <span class="fw-bold">{{ quantity }}</span>
-                  <button class="btn-minus ms-2" (click)="decreaseQuantity()">-</button></div>
-                  <i class="fa-solid fa-xmark" (click)="removeItem()"></i>
-              </div>
-
-            </div>
-
-          </div>
-        </div>
-
-      </div>
-      <div class="modal-footer">
-        <div class="btn-2 w-full"><button type="button" class="btn-2 "> CHECKOUT</button></div>
-        <div class="btn-1 w-full"><button type="button" class="btn-1" data-bs-dismiss="modal">CONTINUE SHOPPING</button></div>
       </div>
 
     </div>
   </div>
-</div>
+</section>
 
 
 
-<div id="Accessories" class="product-section container">
-  <h2> Accessories</h2>
-  <div class="cards-container mt-5">
+<!-- Women Section -->
+<section id="women" class="py-3">
+  <div class="text-center">
+    <h2 class="text-danger">Women</h2>
+  </div>
 
+  <div class="container px-4 px-lg-5 mt-5">
+    <div class="row gx-4 gx-lg-5 row-cols-1 row-cols-md-3 row-cols-xl-4 justify-content-center">
 
-      <div class="card" style="width: 15rem; position: relative;">
-          <!-- Wishlist Icon -->
-          <i class="fa-regular fa-heart wishlist-icon"
-          [ngClass]="{'fa-solid': isWishlisted, 'fa-regular': !isWishlisted, 'wishlist-active': isWishlisted}"
-          (click)="toggleWishlist()">
-       </i>
+      <!-- Loop through women's products -->
+      <div class="col mb-5" *ngFor="let product of womenProducts">
+        <div class="card h-100 custom-card position-relative">
 
-          <img src="../../assets/imag/access (1).jpeg" class="card-img-top" alt="...">
-
-          <div class="card-body">
-              <h5 class="card-title">Card title</h5>
-              <p class="card-text">Some quick example text to build on the card title </p>
-          <p class="price">price:15$</p>
-
-              <!-- Rating Section -->
-              <div class="rating" >
-                  <i class="fa-solid fa-star"></i>
-                  <i class="fa-solid fa-star"></i>
-                  <i class="fa-solid fa-star"></i>
-                  <i class="fa-solid fa-star"></i>
-                  <i class="fa-regular fa-star"></i>
-              </div>
-
-              <!-- Buttons -->
-              <div class="btn-group">
-                  <a href="#" class="btn "> Add to cart</a>
-              </div>
+          <!-- Wishlist icon -->
+          <div class="position-absolute top-0 end-0 p-2">
+            <button class="btn btn-light wishlist-btn" (click)="addToWishlist(product)">❤️</button>
           </div>
+
+          <!-- Product image -->
+          <img class="card-img-top product-image"
+               [src]="product.image_url || 'assets/default.png'"
+               alt="{{ product.name }}" />
+
+          <!-- Product details -->
+          <div class="card-body p-4 d-flex flex-column">
+            <div class="text-center">
+              <h5 class="fw-bolder">{{ product.name }}</h5>
+              <span *ngIf="product.discount > 0" class="text-muted text-decoration-line-through">
+                ${{ product.price }}
+              </span>
+              <span>
+                ${{ product.discount > 0
+                  ? product.price - (product.price * product.discount / 100)
+                  : product.price }}
+              </span>
+            </div>
+          </div>
+
+          <!-- Product actions -->
+          <div class="card-footer p-4 pt-0 border-top-0 bg-transparent text-center">
+            <button class="btn btn-outline-dark mt-auto" (click)="addToCart(product)">Add to cart</button>
+          </div>
+
+        </div>
       </div>
 
+    </div>
+  </div>
+</section>
 
-      <div class="card" style="width: 15rem; position: relative;">
-          <!-- Wishlist Icon -->
-          <i class="fa-regular fa-heart wishlist-icon"
-          [ngClass]="{'fa-solid': isWishlisted, 'fa-regular': !isWishlisted, 'wishlist-active': isWishlisted}"
-          (click)="toggleWishlist()">
-       </i>
 
-          <img src="../../assets/imag/access (2).jpeg" class="card-img-top" alt="...">
 
-          <div class="card-body">
-              <h5 class="card-title">Card title</h5>
-              <p class="card-text">Some quick example text to build on the card title </p>
-          <p class="price">price:15$</p>
+<!-- Accessories Section -->
+<section id="accessories" class="py-3">
+  <div class="text-center">
+    <h2 class="text-warning">Accessories</h2>
+  </div>
 
-              <!-- Rating Section -->
-              <div class="rating" >
-                  <i class="fa-solid fa-star"></i>
-                  <i class="fa-solid fa-star"></i>
-                  <i class="fa-solid fa-star"></i>
-                  <i class="fa-solid fa-star"></i>
-                  <i class="fa-regular fa-star"></i>
-              </div>
+  <div class="container px-4 px-lg-5 mt-5">
+    <div class="row gx-4 gx-lg-5 row-cols-1 row-cols-md-3 row-cols-xl-4 justify-content-center">
 
-              <!-- Buttons -->
-              <div class="btn-group">
-                  <a href="#" class="btn "> Add to cart</a>
-              </div>
+      <!-- Loop through accessories products -->
+      <div class="col mb-5" *ngFor="let product of accessoriesProducts">
+        <div class="card h-100 custom-card position-relative">
+
+          <!-- Wishlist icon -->
+          <div class="position-absolute top-0 end-0 p-2">
+            <button class="btn btn-light wishlist-btn" (click)="addToWishlist(product)">❤️</button>
           </div>
+
+          <!-- Product image -->
+          <img class="card-img-top product-image"
+               [src]="product.image_url || 'assets/default.png'"
+               alt="{{ product.name }}" />
+
+          <!-- Product details -->
+          <div class="card-body p-4 d-flex flex-column">
+            <div class="text-center">
+              <h5 class="fw-bolder">{{ product.name }}</h5>
+              <span *ngIf="product.discount > 0" class="text-muted text-decoration-line-through">
+                ${{ product.price }}
+              </span>
+              <span>
+                ${{ product.discount > 0
+                  ? product.price - (product.price * product.discount / 100)
+                  : product.price }}
+              </span>
+            </div>
+          </div>
+
+          <!-- Product actions -->
+          <div class="card-footer p-4 pt-0 border-top-0 bg-transparent text-center">
+            <button class="btn btn-outline-dark mt-auto" (click)="addToCart(product)">Add to cart</button>
+          </div>
+
+        </div>
       </div>
 
-
-      <div class="card" style="width: 15rem; position: relative;">
-          <!-- Wishlist Icon -->
-          <i class="fa-regular fa-heart wishlist-icon"
-          [ngClass]="{'fa-solid': isWishlisted, 'fa-regular': !isWishlisted, 'wishlist-active': isWishlisted}"
-          (click)="toggleWishlist()">
-       </i>
-
-          <img src="../../assets/imag/access (3).jpeg" class="card-img-top" alt="...">
-
-          <div class="card-body">
-              <h5 class="card-title">Card title</h5>
-              <p class="card-text">Some quick example text to build on the card title </p>
-          <p class="price">price:15$</p>
-
-              <!-- Rating Section -->
-              <div class="rating" >
-                  <i class="fa-solid fa-star"></i>
-                  <i class="fa-solid fa-star"></i>
-                  <i class="fa-solid fa-star"></i>
-                  <i class="fa-solid fa-star"></i>
-                  <i class="fa-regular fa-star"></i>
-              </div>
-
-              <!-- Buttons -->
-              <div class="btn-group">
-                  <a href="#" class="btn "> Add to cart</a>
-              </div>
-          </div>
-      </div>
-
-
-      <div class="card" style="width: 15rem; position: relative;">
-          <!-- Wishlist Icon -->
-          <i class="fa-regular fa-heart wishlist-icon"
-          [ngClass]="{'fa-solid': isWishlisted, 'fa-regular': !isWishlisted, 'wishlist-active': isWishlisted}"
-          (click)="toggleWishlist()">
-       </i>
-
-          <img src="../../assets/imag/access (4).jpeg" class="card-img-top" alt="...">
-
-          <div class="card-body">
-              <h5 class="card-title">Card title</h5>
-              <p class="card-text">Some quick example text to build on the card title </p>
-          <p class="price">price:15$</p>
-
-              <!-- Rating Section -->
-              <div class="rating" >
-                  <i class="fa-solid fa-star"></i>
-                  <i class="fa-solid fa-star"></i>
-                  <i class="fa-solid fa-star"></i>
-                  <i class="fa-solid fa-star"></i>
-                  <i class="fa-regular fa-star"></i>
-              </div>
-
-              <!-- Buttons -->
-              <div class="btn-group">
-                  <a href="#" class="btn "> Add to cart</a>
-              </div>
-          </div>
-      </div>
-
-</div>
-</div>
-
-</div>
+    </div>
+  </div>
+</section>

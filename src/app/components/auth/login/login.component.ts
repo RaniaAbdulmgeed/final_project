@@ -16,10 +16,11 @@ export class LoginComponent {
   login() {
     this.authService.login({ email: this.email, password: this.password }).subscribe(
       (response) => {
-        localStorage.setItem('token', response.token);
-        localStorage.setItem('role', response.role); // Store role in localStorage
+        console.log('Login successful:', response); // Log full response
 
-        // Redirect based on role
+        localStorage.setItem('token', response.token);
+        localStorage.setItem('role', response.role);
+
         if (response.role === 'admin') {
           this.router.navigate(['/dashboard']);
         } else {
@@ -27,8 +28,10 @@ export class LoginComponent {
         }
       },
       (error) => {
-        alert('Invalid credentials');
+        console.error('Login failed:', error); // Log full error details
+        alert(error.error.message || 'Invalid credentials'); // Show actual error message from backend
       }
     );
   }
+
 }
