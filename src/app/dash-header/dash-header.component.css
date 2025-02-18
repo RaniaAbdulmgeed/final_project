@@ -15,8 +15,7 @@
 .header .logo:hover {
   font-weight: bold;
   font-size: 20px;
-  color: palevioletred;
-}
+  color: #DDA853;}
 
 .header .user {
   display: flex;
@@ -49,6 +48,6 @@
 }
 
 .header .logout-btn:hover {
-  background-color: rgb(255, 69, 58); /* A red shade for hover to indicate logout */
-  border-color: rgb(255, 69, 58); /* Match border with background */
+  background-color:#DDA853; /* A red shade for hover to indicate logout */
+  border-color: #DDA853; /* Match border with background */
 }

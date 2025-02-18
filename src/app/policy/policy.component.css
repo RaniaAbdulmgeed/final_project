@@ -1,0 +1,50 @@
+/* General Styling */
+body {
+  font-family: 'Arial', sans-serif;
+  direction: ltr;
+  text-align: left;
+  margin: 0;
+  padding: 0;
+  background-color: #f9f9f9;
+  color: #333;
+}
+
+
+/* الهيدر */
+header {
+  /* background-color: #A6CDC6; */
+  color: rgb(0, 0, 0);
+  text-align: center;
+  padding: 15px;
+  font-size: 24px;
+  text-shadow: 2px 2px 2px #9F8383;
+  margin-bottom: 3%;
+  margin-top: 3%;
+
+}
+
+/* أقسام السياسة */
+.policy {
+  width: 80%;
+  margin: 20px auto;
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.policy-section {
+  margin-bottom: 20px;
+  padding: 15px;
+  border-bottom: 1px solid #ddd;
+}
+
+.policy-section h2 {
+  color: #DDA853;
+  font-size: 20px;
+}
+
+.policy-section p {
+  font-size: 16px;
+  line-height: 1.6;
+}

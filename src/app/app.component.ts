@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, NavigationEnd } from '@angular/router';
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -10,21 +11,19 @@ export class AppComponent {
   showHeaderFooter = true;
 
   constructor(private router: Router) {
-    // Watch the route and hide header/footer for specific routes
-    this.router.events.subscribe(() => {
-      const currentRoute = this.router.url;
+    this.router.events.subscribe(event => {
+      if (event instanceof NavigationEnd) {
+        const currentRoute = this.router.url;
 
-      // Define routes where you don't want the header and footer
-      const noHeaderFooterRoutes = ['/dashboard' , '/editusers' , '/editcategories' ,
-        'editproducts/:id' , '/editorders' , '/editpayments' , '/login' , '/register']; // Add more routes if needed
+        // قائمة بالمسارات التي يجب أن تخفي الهيدر والفوتر
+        const noHeaderFooterRoutes = [
+          '/dashboard', '/editusers', '/editcategories', '/editorders',
+          '/editpayments', '/login', '/register', '/editproducts'
+        ];
 
-      // Show or hide header/footer based on the current route
-      this.showHeaderFooter = !noHeaderFooterRoutes.includes(currentRoute);
+        // إخفاء الهيدر والفوتر إذا كان المسار يطابق أي من القيم في القائمة
+        this.showHeaderFooter = !noHeaderFooterRoutes.some(route => currentRoute.startsWith(route));
+      }
     });
   }
-
-  navigateToHome() {
-    this.router.navigate(['/home']); // Example of navigating to the homepage
-  }
-
 }

@@ -6,7 +6,7 @@
 <div class="fluid">
   <div class="d-flex">
     <!-- Sidebar -->
-    <nav class="w-1/5 bg-gray-800 text-white p-4 flex flex-column">
+    <nav class="w-1/5 bg-gray-800 text-white p-4 flex flex-column " >
       <h2 class="text-2xl font-bold text-center mb-6">Admin Panel</h2>
       <ul class="space-y-4">
         <!-- Dashboard Section -->
@@ -15,47 +15,47 @@
           <span>Dashboard</span>
         </li>
         <!-- Users Section -->
-    <li class="nav-item dropdown" (click)="toggleTable('users')">
-      <a class="nav-link dropdown-toggle text-white" href="#" id="usersDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    <!-- <li class="nav-item" (click)="toggleTable('users')">
+      <a class="nav-link text-white" href="#" id="usersDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
         <fa-icon [icon]="faUser"></fa-icon> Users
       </a>
       <ul class="dropdown-menu" aria-labelledby="usersDropdown">
         <li><a class="dropdown-item" href="/editusers"><fa-icon [icon]="faPen"></fa-icon> Edit User</a></li>
       </ul>
-    </li>
+    </li> -->
         <!-- Categories Section -->
     <li class="nav-item dropdown" (click)="toggleTable('categories')">
-      <a class="nav-link dropdown-toggle text-white" href="#" id="categoriesDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+      <a class="nav-link text-white" href="#" id="categoriesDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
         <fa-icon [icon]="faStore"></fa-icon> Categories
       </a>
-      <ul class="dropdown-menu" aria-labelledby="categoriesDropdown">
+      <!-- <ul class="dropdown-menu" aria-labelledby="categoriesDropdown">
         <li><a class="dropdown-item" href="/editcategories"><fa-icon [icon]="faPen"></fa-icon> Edit Category</a></li>
-      </ul>
+      </ul> -->
     </li>
   <!-- Products Section -->
-  <li class="nav-item dropdown" (click)="toggleTable('products')">
-    <a class="nav-link dropdown-toggle text-white" href="#" id="productsDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+  <li class="nav-item dropdown" (click)="toggleTable2('products')">
+    <a class="nav-link text-white" href="#" id="productsDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
       <fa-icon [icon]="faBoxes"></fa-icon> Products
     </a>
-    <ul class="dropdown-menu" aria-labelledby="productsDropdown">
+    <!-- <ul class="dropdown-menu" aria-labelledby="productsDropdown">
       <li><a class="dropdown-item" href="/editproducts"><fa-icon [icon]="faPen"></fa-icon> Edit Product</a></li>
-    </ul>
+    </ul> -->
   </li>
 <!-- Orders Section -->
 <li class="nav-item dropdown" (click)="toggleTable('orders')">
-  <a class="nav-link dropdown-toggle text-white" href="#" id="ordersDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+  <a class="nav-link text-white" href="#" id="ordersDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     <fa-icon [icon]="faShoppingCart"></fa-icon> Orders
   </a>
-  <ul class="dropdown-menu" aria-labelledby="ordersDropdown">
+  <!-- <ul class="dropdown-menu" aria-labelledby="ordersDropdown">
     <li><a class="dropdown-item" href="/editorders"><fa-icon [icon]="faPen"></fa-icon> Edit Order</a></li>
-  </ul>
+  </ul> -->
 </li>
 <li class="nav-item dropdown" (click)="toggleTable('payments')">
-    <fa-icon [icon]="faShoppingCart"></fa-icon><span>Payments</span>
+    <fa-icon [icon]="faShoppingCart"></fa-icon><a>Payments</a>
 </li>
-<li class="nav-item dropdown" (click)="toggleTable('contacts')">
+<!-- <li class="nav-item dropdown" (click)="toggleTable('contacts')">
   <fa-icon [icon]="faShoppingCart"></fa-icon><span>Contacts</span>
-</li>
+</li> -->
       </ul>
     </nav>
 
@@ -65,10 +65,17 @@
   <!-- Dashboard Section -->
   <div *ngIf="currentTable === 'dashboard'">
     <h2 class="text-center text-2xl font-bold mb-4">Dashboard Content</h2>
+    <div class="chart-container">
+      <canvas baseChart
+        [data]="lineChartData"
+        [options]="lineChartOptions"
+        chartType="line">
+      </canvas>
+    </div>
     <!-- Add dashboard content here -->
   </div>
 
-  <!--******************************************************-->
+  <!---->
 
   <!-- Users Section -->
   <div *ngIf="currentTable === 'users'">
@@ -76,10 +83,10 @@
     <!-- Add users content here -->
   </div>
 
-  <!--******************************************************-->
+  <!---->
 
   <!-- Categories Section -->
-  <div *ngIf="currentTable === 'categories'">
+  <div *ngIf="currentTable === 'categories' && !showAddCategoryForm">
     <h2 class="text-center text-2xl font-bold mb-4">Categories Content</h2>
     <!-- Add categories content here -->
     <!-- <pre>{{ categories | json }}</pre> -->
@@ -109,15 +116,67 @@
         </tr>
       </tbody>
     </table>
-    <a class="btn btn-primary" href="/createcategory" role="button" (click)="addCategory(); $event.preventDefault();">
+    <!-- <a class="btn btn-primary" href="/createcategory" role="button" (click)="addCategory(); $event.preventDefault();">
+      <i class="fa-solid fa-plus"></i> Add
+    </a> -->
+    <a class="btn btn-primary" href="#" role="button" (click)="toggleAddCategoryForm($event)">
       <i class="fa-solid fa-plus"></i> Add
     </a>
   </div>
 
-  <!--******************************************************-->
+  <!-- //////////////////////////////////////// form add category///////////////////////////// -->
+  <div *ngIf="currentTable === 'categories' && showAddCategoryForm" class="card mt-3 p-3">
+    <div class="row justify-content-center">
+      <div class="col-md-8 col-lg-6">
+        <div class="card shadow-lg">
+          <div class="card-header bg-primary text-white text-center">
+            <h4><i class="fa-solid fa-plus"></i> Add New Category</h4>
+          </div>
+          <div class="card-body">
+            <form (submit)="addCategory()">
+              <!-- Name -->
+              <div class="mb-3">
+                <label for="name" class="form-label">Category Name</label>
+                <input type="text" class="form-control" id="name" [(ngModel)]="categoryData.name" name="name" required>
+              </div>
+
+              <!-- Description -->
+              <div class="mb-3">
+                <label for="description" class="form-label">Description</label>
+                <textarea class="form-control" id="description" rows="3" [(ngModel)]="categoryData.description" name="description"></textarea>
+              </div>
+
+              <!-- State -->
+              <div class="mb-3">
+                <label for="state" class="form-label">Category State</label>
+                <select class="form-control" id="state" [(ngModel)]="categoryData.state" name="state">
+                  <option [value]="1">Active</option>
+                  <option [value]="0">Inactive</option>
+                </select>
+              </div>
+
+              <!-- Buttons -->
+              <div class="d-flex justify-content-between">
+                <button type="submit" class="btn btn-success">
+                  <i class="fa-solid fa-save"></i> Create Category
+                </button>
+                <button type="button" class="btn btn-secondary" (click)="router.navigate(['/categories'])">
+                  <i class="fa-solid fa-undo"></i> Cancel
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!---->
 
   <!-- Products Section -->
-  <div *ngIf="currentTable === 'products'">
+  <div *ngIf="currentTable === 'products' && !showAddProductForm">
+
     <h2 class="text-center text-2xl font-bold mb-4">Products Content</h2>
     <!-- Add products content here -->
     <table class="table table-bordered table-hover">
@@ -159,11 +218,105 @@
         </tr>
       </tbody>
     </table>
-    <a class="btn btn-primary" [routerLink]="['/createproduct']">Add Product
+    <a class="btn btn-primary" href="#" role="button" (click)="toggleAddProductForm($event)">
+      <i class="fa-solid fa-plus"></i> Add Product
     </a>
+
   </div>
 
-<!--******************************************************-->
+
+
+  <!-- /////////////////////////////////////////form add product/////////////////////////////////////// -->
+  <div *ngIf="showAddProductForm">
+    <div class="row justify-content-center">
+      <div class="col-md-8 col-lg-6">
+        <div class="card shadow-lg">
+          <div class="card-header bg-primary text-white text-center">
+            <h4><i class="fa-solid fa-box"></i> Add New Product</h4>
+          </div>
+          <div class="card-body">
+            <form (submit)="addProduct()">
+              <!-- Name -->
+              <div class="mb-3">
+                <label for="name" class="form-label">Product Name</label>
+                <input type="text" class="form-control" id="name" [(ngModel)]="productData.name" name="name" required>
+              </div>
+
+              <!-- Description -->
+              <div class="mb-3">
+                <label for="description" class="form-label">Description</label>
+                <textarea class="form-control" id="description" rows="3" [(ngModel)]="productData.description" name="description"></textarea>
+              </div>
+
+              <!-- Category -->
+              <div class="mb-3">
+                <label for="category" class="form-label">Category</label>
+                <input type="number" class="form-control" id="category" [(ngModel)]="productData.category_id" name="category_id" required>
+              </div>
+
+              <!-- Price -->
+              <div class="mb-3">
+                <label for="price" class="form-label">Price ($)</label>
+                <input type="number" class="form-control" id="price" [(ngModel)]="productData.price" name="price" required>
+              </div>
+
+              <!-- Discount -->
+              <div class="mb-3">
+                <label for="discount" class="form-label">Discount (%)</label>
+                <input type="number" class="form-control" id="discount" [(ngModel)]="productData.discount" name="discount">
+              </div>
+
+              <!-- Stock Quantity -->
+              <div class="mb-3">
+                <label for="stock" class="form-label">Stock Quantity</label>
+                <input type="number" class="form-control" id="stock" [(ngModel)]="productData.stock_quantity" name="stock_quantity">
+              </div>
+
+              <!-- Size Options -->
+              <div class="mb-3">
+                <label for="size" class="form-label">Size Options (Comma-separated)</label>
+                <input type="text" class="form-control" id="size" [(ngModel)]="productData.size_options" name="size_options">
+              </div>
+
+              <!-- Color Options -->
+              <div class="mb-3">
+                <label for="color" class="form-label">Color Options (Comma-separated)</label>
+                <input type="text" class="form-control" id="color" [(ngModel)]="productData.color_options" name="color_options">
+              </div>
+
+              <!-- Image Upload -->
+              <div class="mb-3">
+                <label for="image" class="form-label">Product Image</label>
+                <input type="file" class="form-control" id="image" (change)="onFileSelected($event)">
+              </div>
+
+              <!-- State -->
+              <div class="mb-3">
+                <label for="state" class="form-label">Product State</label>
+                <select class="form-control" id="state" [(ngModel)]="productData.state" name="state">
+                  <option [value]="1">Active</option>
+                  <option [value]="0">Inactive</option>
+                </select>
+              </div>
+
+              <!-- Buttons -->
+              <div class="d-flex justify-content-between">
+                <button type="submit" class="btn btn-success">
+                  <i class="fa-solid fa-save"></i> Create Product
+                </button>
+                <button type="button" class="btn btn-secondary" (click)="router.navigate(['/products'])">
+                  <i class="fa-solid fa-undo"></i> Cancel
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+<!---->
 
   <!-- Orders Section -->
   <div *ngIf="currentTable === 'orders'">
@@ -209,7 +362,7 @@
     </div>
   </div>
 
-  <!--******************************************************-->
+  <!---->
 
   <!-- Payments Section -->
   <div *ngIf="currentTable === 'payments'">
@@ -253,7 +406,7 @@
     </div>
   </div>
 
-  <!--******************************************************-->
+  <!---->
 
   <!-- Contacts Section -->
   <div *ngIf="currentTable === 'contacts'">

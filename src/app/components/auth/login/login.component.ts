@@ -16,22 +16,24 @@ export class LoginComponent {
   login() {
     this.authService.login({ email: this.email, password: this.password }).subscribe(
       (response) => {
-        console.log('Login successful:', response); // Log full response
+        console.log('Login successful:', response); // Log response
+
+        if (!response.token) {
+          alert('Error: Token is missing from response.');
+          return;
+        }
 
         localStorage.setItem('token', response.token);
         localStorage.setItem('role', response.role);
 
-        if (response.role === 'admin') {
-          this.router.navigate(['/dashboard']);
-        } else {
-          this.router.navigate(['/home']);
-        }
+        this.router.navigate([response.role === 'admin' ? '/dashboard' : '/home']);
       },
       (error) => {
-        console.error('Login failed:', error); // Log full error details
-        alert(error.error.message || 'Invalid credentials'); // Show actual error message from backend
+        console.error('Login failed:', error);
+        alert(error.error?.message || 'Invalid credentials');
       }
     );
   }
+
 
 }

@@ -26,6 +26,8 @@ import { CreateproductComponent } from './createproduct/createproduct.component'
 import { LoginComponent } from './components/auth/login/login.component';
 import { RegisterComponent } from './components/auth/register/register.component';
 import { AuthGuard } from './guards/auth.guard';
+import { PolicyComponent } from './policy/policy.component';
+import { HelppComponent } from './helpp/helpp.component';
 
 const routes: Routes =
 [
@@ -35,6 +37,7 @@ const routes: Routes =
   {path: 'home' , component:HomeComponent},
   {path: 'review' , component:ReviewComponent},
   {path: 'profile' , component:ProfileComponent},
+  {path: 'helpp' , component:HelppComponent},
   // {path: 'dashboard', component:DashboardComponent},
   {path: 'productform' , component:CustomProductFormComponent},
   {path: 'editusers' , component:EdituserComponent},
@@ -44,6 +47,7 @@ const routes: Routes =
   {path: 'editpayments' , component:EditpaymentsComponent},
   {path: 'wishlist' , component:WishlistComponent},
   {path: 'men' , component:MenComponent},
+  {path: 'policy' , component:PolicyComponent},
   {path: 'woman' , component:WomanComponent},
   {path: 'shop' , component:ShopComponent},
   {path: 'checkout' , component:CheckoutComponent},

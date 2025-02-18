@@ -36,6 +36,8 @@ import { CreatecategoryComponent } from './createcategory/createcategory.compone
 import { CreateproductComponent } from './createproduct/createproduct.component';
 import { RegisterComponent } from './components/auth/register/register.component';
 import { LoginComponent } from './components/auth/login/login.component';
+import { PolicyComponent } from './policy/policy.component';
+import { HelppComponent } from './helpp/helpp.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -67,7 +69,9 @@ import { LoginComponent } from './components/auth/login/login.component';
     OrdersComponent,
     CreatecategoryComponent,
     CreateproductComponent,
-    RegisterComponent
+    RegisterComponent,
+    PolicyComponent,
+    HelppComponent
   ],
   imports: [
     BrowserModule,
